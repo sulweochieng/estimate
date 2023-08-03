@@ -15,9 +15,9 @@ void find_max_shares(int ratios[][SALARYLEVELS], int totalCombinations, int
 
     for (i = 0; i < totalCombinations; i++)
     {
-        aShare = share_of_a(*ratios[i][0], *ratios[i][1], *ratios[i][2]);
-        bShare = share_of_b(*ratios[i][0], *ratios[i][1], *ratios[i][2]);
-        cShare = share_of_c(*ratios[i][0], *ratios[i][1], *ratios[i][2]);
+        aShare = share_of_a(ratios[i][0], ratios[i][1], ratios[i][2]);
+        bShare = share_of_b(ratios[i][0], ratios[i][1], ratios[i][2]);
+        cShare = share_of_c(ratios[i][0], ratios[i][1], ratios[i][2]);
 
         if (aShare > aMaxShare) 
 	{

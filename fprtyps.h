@@ -4,6 +4,8 @@
 void add_beg_list(node **head, node *node);
 int **allocate_2D_array(unsigned long long int rows, unsigned int cols);
 unsigned long long int binomial_coefficient(int n, int k);
+void find_max_shares(int ***ratios, int *totalCombinations, int *aMaxIndex, int
+		*aMaxIndex. int *cMaxIndex);
 int gcd(int a, int b);
 int *generate_ratio(int a, int b, int c);
 int **generate_ratio_list(int n);
@@ -13,7 +15,7 @@ float share_of_a(int a, int b, int c);
 float share_of_b(int a, int b, int c);
 float share_of_c(int a, int b, int c);
 char *user_input_string(void);
-node *create_list(node *new);
+node *create_list(node *_new);
 node *new_node(Profession *pointer);
 Profession *create_field(void);
 

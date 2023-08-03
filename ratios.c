@@ -80,7 +80,8 @@ int *generate_ratio(int a, int b, int c)
 }
 
 /**
- * ratios - generates all possible ratios for computing the estimate.
+ * generate_ratio_list - generates all possible ratios for computing the
+ * estimate costs.
  * @n: the number of specific specialists needed for the project.
  * Return: returns an array of arrays of the optimum ratios.
  */
@@ -121,10 +122,8 @@ int **generate_ratio_list(int n)
  */
 int **optimum_ratios(node *name)
 {
-	int **optimumRatios = NULL, **ratios = NULL, totalCombinations, i, j, k,
-	    aMaxIndex = -1, bMaxIndex = -1, cMaxIndex = -1;
-	float aShare, bShare, cShare, aMaxShare = 0.0, bMaxShare = 0.0,
-	      cMaxShare = 0.0;
+	int **optimumRatios = NULL, **ratios = NULL, totalCombinations, j, k;
+	int aMaxIndex = -1, bMaxIndex = -1, cMaxIndex = -1;
 
 	printf("How many %s, do you want in this project: ", name->data.name);
 	scanf("%d", &n);
@@ -133,34 +132,11 @@ int **optimum_ratios(node *name)
 	ratios = allocate_2D_array(totalCombinations, SALARYLEVELS);
 	if (ratios != NULL)
 	{
-		/*call the function generating ratios here to store in ratios*/
 		ratios = generate_ratio_list(n);
-
 		/*Finding top 3 ratios where a, b, c have the highest shares*/
-		for (i = 0; i < totalCombinations; i++)
-		{
-			aShare = share_of_a(ratios[i][0], ratios[i][1], ratios[i][2]);
-			bShare = share_of_b(ratios[i][0], ratios[i][1], ratios[i][2]);
-			cShare = share_of_c(ratios[i][0], ratios[i][1], ratios[i][2]);
+		find_max_shares(&ratios, &totalCombinations, &aMAxIndex,
+				&bMAxIndex, &cMaxIndex);
 
-			if (aShare > aMaxShare)
-			{
-				aMaxShare = aShare;
-				aMaxIndex = i;
-			}
-
-			if (bShare > bMaxShare)
-			{
-				bMaxShare = bShare;
-				bMaxIndex = i;
-			}
-
-			if (cShare > cMaxShare)
-			{
-				cMaxShare = cShare;
-				cMaxIndex = i;
-			}
-		}
 		optimumRatios = allocate_2D_array(OPTIMUM, SALARYLEVELS);
 		if (optimumRatios != NULL)
 		{
@@ -174,9 +150,7 @@ int **optimum_ratios(node *name)
 				}
 			}
 		}
-		/*Freeing memory allocated to the original ratios*/
 		free_2D_array(ratios, totalCombinations);
-
 		return (optimumRatios);
 	}
 	exit(EXIT_FAILURE);

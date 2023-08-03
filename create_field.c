@@ -70,10 +70,10 @@ node *new_node(Profession *pointer)
 
 /**
  * create_list - a funtion creating a new linked list.
- * @new: a data node to be added into the list
+ * @_new: a data node to be added into the list
  * Return: returns pointer to the head of the newly created list.
  */
-node *create_list(node *new)
+node *create_list(node *_new)
 {
 	node *head = NULL;
 

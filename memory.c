@@ -2,8 +2,9 @@
 #include "types.h"
 #include "fprtyps.h"
 #include "globals.h"
+
 /**
- * allocate_2D_arry - a dynamically allocating memory to a 2-D array.
+ * allocate_2D_array - a dynamically allocating memory to a 2-D array.
  * @rows: total possible number of all ratios that can be generated.
  * @cols: the three levels of expertise.
  * Return: the location of the 2-D array.

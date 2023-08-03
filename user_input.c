@@ -3,7 +3,7 @@
 #include "fprtyps.h"
 #include "globals.h"
 /**
- * user_inputS - a function that reads a string from a user and returns a
+ * user_input_string - a function that reads a string from a user and returns a
  * pointer to the read stream and stores it unto a buffer.
  * Description: this function is designed to read a string from the stdin. The
  *	input might include several spaces. But when the function encounters a

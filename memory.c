@@ -1,5 +1,7 @@
 #include "main.h"
-
+#include "types.h"
+#include "fprtyps.h"
+#include "globals.h"
 /**
  * allocate_2D_arry - a dynamically allocating memory to a 2-D array.
  * @rows: total possible number of all ratios that can be generated.

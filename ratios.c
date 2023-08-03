@@ -1,5 +1,7 @@
 #include "main.h"
-
+#include "types.h"
+#include "fprtyps.h"
+#include "globals.h"
 /**
  * binomial_coefficient - a function that determines the number of possible
  * ratios when dividing 'n' items among 'k' individuals.
@@ -82,7 +84,7 @@ int *generate_ratio(int a, int b, int c)
  * @n: the number of specific specialists needed for the project.
  * Return: returns an array of arrays of the optimum ratios.
  */
-int **ratios(int n)
+int **generate_ratio_list(int n)
 {
 	int a, b, c;
 	int numRatios = 0;
@@ -132,7 +134,7 @@ int **optimum_ratios(node *name)
 	if (ratios != NULL)
 	{
 		/*call the function generating ratios here to store in ratios*/
-		ratios = ratios(n);
+		ratios = generate_ratio_list(n);
 
 		/*Finding top 3 ratios where a, b, c have the highest shares*/
 		for (i = 0; i < totalCombinations; i++)

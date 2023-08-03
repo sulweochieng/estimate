@@ -1,5 +1,7 @@
 #include "main.h"
 #include "types.h"
+#include "fprtyps.h"
+#include "globals.h"
 
 /**
  * create_field - populatesalaryLevelss type Profession with appropriate data

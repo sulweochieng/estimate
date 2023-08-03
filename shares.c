@@ -1,3 +1,7 @@
+#include "main.h"
+#include "types.h"
+#include "fprtyps.h"
+#include "globals.h"
 /**
  * share_of_a - calculates the share of 'a' in the ratio.
  * @a: member representative of the Senior level.

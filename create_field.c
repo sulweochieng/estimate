@@ -1,9 +1,6 @@
 #include "main.h"
 #include "types.h"
 
-unsigned int count = 0;
-
-node *devs;
 /**
  * create_field - populatesalaryLevelss type Profession with appropriate data
  * Description: create_field function is designed to help the user create a new
@@ -71,7 +68,6 @@ node *new_node(Profession *pointer)
 
 /**
  * create_list - a funtion creating a new linked list.
- * @head: pointer to the beginning of the list.
  * @new: a data node to be added into the list
  * Return: returns pointer to the head of the newly created list.
  */
@@ -96,7 +92,7 @@ node *create_list(node *new)
  * @node: the node to be added to the list.
  * @head: pointer to the list to which we are adding the node unto.
  */
- void add_beg_list(node **head, node *node)
+void add_beg_list(node **head, node *node)
 {
 	node *temp = NULL;
 
@@ -117,6 +113,7 @@ node *create_list(node *new)
 unsigned int node_count(node *head)
 {
 	node *temp = NULL;
+	unsigned int counter = 0;
 
 	temp = head;
 	if (head == NULL)
@@ -131,4 +128,3 @@ unsigned int node_count(node *head)
 	}
 	return (counter);
 }
-

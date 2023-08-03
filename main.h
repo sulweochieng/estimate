@@ -12,5 +12,5 @@
 
 #define BUFSIZE 124
 #define SALARYLEVELS 3 /*defines possible salary levels */
-
+#define OPTIMUM 3
 #endif

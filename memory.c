@@ -1,18 +1,18 @@
 #include "main.h"
 
 /**
- * array_alloc - a dynamically allocating memory to a 2-D array.
+ * allocate_2D_arry - a dynamically allocating memory to a 2-D array.
  * @rows: total possible number of all ratios that can be generated.
  * @cols: the three levels of expertise.
  * Return: the location of the 2-D array.
  */
-int **array_alloc(unsigned long long int rows, unsigned int cols)
+int **allocate_2D_array(unsigned long long int rows, unsigned int cols)
 {
-	int **arrayRatios = NULL;
+	int **arrays2D = NULL;
 	int i, k;
 
-	arrayRatios = malloc(sizeof(int) * rows);
-	if (!arraRatios)
+	arrays2D = malloc(sizeof(unsigned long long int) * rows);
+	if (!arrays2D)
 	{
 		printf("Failed to allocate memory\n");
 		exit(EXIT_FAILURE);
@@ -20,14 +20,14 @@ int **array_alloc(unsigned long long int rows, unsigned int cols)
 
 	for (i = 0; i < rows; i++)
 	{
-		arrayRAtio[i] = malloc(sizeof(int) * rows);
-		if (!arrayRatio[i])
+		arrays2D[i] = malloc(sizeof(unsigned int) * cols);
+		if (!arrays2D[i])
 		{
 			for (j = 0; j < i; j++)
 				free(array[j]);
-			free(arrayRatio);
+			free(arrays2D);
 		}
 		exit(EXIT_FAILURE);
 	}
-	return (arrayRatio);
+	return (arrays2D);
 }

@@ -10,7 +10,7 @@
  *	implement the problem as a "Stars and Bars" problem.
  *	The "Star and Bars" formula for the number of ways to distribute 'n'
  *	identical items into 'k' distinct boxes is: => (n+(k-1)/k-1)) where (n
- *	k) represents the binomial coefficient, also known as "n choose k". 
+ *	k) represents the binomial coefficient, also known as "n choose k".
  * Return: returns the total number of possible ratios.
  */
 unsigned long long int binomial_coefficient(int n, int k)
@@ -18,17 +18,17 @@ unsigned long long int binomial_coefficient(int n, int k)
 	unsigned long long int result = 1;
 	int i;
 
-	if (k > (n -k))
-		k = (n -k); /*using symmetry to reduce number of iterations*/
+	if (k > (n - k))
+		k = (n - k);/*using symmetry to reduce number of iterations*/
 	for (i = 0; i < k; i++)
 	{
 		result *= (n - i);
 		result /= (i + 1);
 	}
 	return (result);
-}/*always remember while calling: bionomialCoefficient(n+(k-1), k-1)*/
+} /*always remember while calling: bionomialCoefficient(n+(k-1), k-1)*/
 
-/******************************************************************************/
+/*****************************************************************************/
 /* To determine the possible ratios to distribute 'n' among 3-levels*/
 /*****************************************************************************/
 /**
@@ -46,7 +46,7 @@ int gcd(int a, int b)
 
 /**
  * generate_ratio - generate possible ratios of sharing 'n' number of items.
- * Description: being that we have only 3 salary levels currently,I will use the
+ * Description: we have only 3 salary levels currently,I will use the
  * three variables; a,b and c to represent each salary level.
  * @a: first member, to represent Senior level.
  * @b: second member, to represent Mid-level.
@@ -62,14 +62,12 @@ int *generate_ratio(int a, int b, int c)
 
 	gcd_val_ab = gcd(a, b);
 	gcd_val_bc = gcd(b, c);
-	
 	ratio = malloc(levels * sizeof(int));
 	if (!ratio)
 	{
 		printf("Failed to allocate memory!\n");
 		exit(EXIT_FAILURE);
 	}
-	
 	ratioVals[0] = a / gcd_val_ab;
 	ratioVals[1] = b / gcd_val_ab;
 	ratioVals[2] = c / gcd_val_bc;
@@ -81,148 +79,103 @@ int *generate_ratio(int a, int b, int c)
 
 /**
  * ratios - generates all possible ratios for computing the estimate.
- * @name: the identifcation of the profession in which we are finding the
- * estimate.
- * Description: if the number if the number of ratios are more than 10, ratios()
- * finds the best case scenarios for computing 10 possible ratios.
+ * @n: the number of specific specialists needed for the project.
  * Return: returns an array of arrays of the optimum ratios.
  */
-/*int **ratios(profession *name)
+int **ratios(int n)
 {
-	int n, a, b, c;
+	int a, b, c;
+	int numRatios = 0;
 	int **ratiosList = NULL;
-	printf("How many %s do you for this project: ", name->name);
-	scanf("%d", &n);
-	*All possible combinations of items for a (from 1 to n)*/
-/*	for (a = 1; a <= n; a++)
+
+	ratiosList = malloc(sizeof(int *) * n * n);
+	/*All possible combinations of items for a (from 1 to n)*/
+	for (a = 1; a <= n; a++)
 	{
-		*For second person (from 1 to remaining n)*/
-/*		for (b = 1; b <= n - a; b++)
+		/*For second person (from 1 to remaining n)*/
+		for (b = 1; b <= n - a; b++)
 		{
-			*Remaining n for the c*/
-/*			c = (n - a) - b;
+			/*Remaining n for the c*/
+			c = (n - a) - b;
 
-			return (generate_ratio(a, b, c))*/
+			ratiosList[numRatios] = malloc(sizeof(int) *
+					SALARYLEVELS);
+			ratiosList[numRatios][0] = a;
+			ratiosList[numRatios][1] = b;
+			ratiosList[numRatios][2] = c;
 
+			numRatios++;
+		}
+	}
 
-/*****************************************************************************/
-
-/**
- * For this project's purpose, I'll do the following; for any number of any
- * possible n number of ratios generated when sharing m number of items among
- * the the groups, we will decompose them to only 3 optimum ratios. Herein
- * OPTIMUM is the instace where each member of the ratio body is at maximum. i.e
- * I will choose one array of ratio where member 'a' is at it's highest, 'b' as
- * its highest and subsequently for 'c' at its highest and all these three will
- * be stored in a 2-D array for easy access.
- * I will achieve this by keeping track of the indices where each element (a, b,
- * c) has the highest share. Then selcting the top ratios based on these
- * indices.
- */
-
-/*****************************************************************************/
-
-/**
- * share_of_a - calculates the share of 'a' in the ratio
- * @a: member representative of the Senior level.
- * @b: member representative of the Mid-level.
- * @c: member representative of the Junior level.
- * Return: returns the share of 'a'.
- */
-float share_of_a(int a, int b, int c)
-{
-	return ((float)a / (a + b + c));
-}
-
-/**
- * share_of_b - calculates the share of 'a' in the ratio
- * @a: member representative of the Senior level.
- * @b: member representative of the Mid-level.
- * @c: member representative of the Junior level.
- * Return: returns the share of 'a'.
- */
-float share_of_b(int a, int b, int c)
-{
-	return ((float)b / (a + b + c));
-} 
-
-/**
- * share_of_a - calculates the share of 'a' in the ratio
- * @a: member representative of the Senior level.
- * @b: member representative of the Mid-level.
- * @c: member representative of the Junior level.
- * Return: returns the share of 'a'.
- */
-float share_of_c(int a, int b, int c)
-{
-	return ((float)c / (a + b + c));
+	return (ratiosList);
 }
 
 /**
  * optimum_ratios - generates optimum ratios from  a list of all possible
  * ratios.
+ * @name: the specific list member we would want to compute ratio for.
  * Return: a pointer to the array of the various ratios.
  */
-int **optimum_ratios(void)
+int **optimum_ratios(node *name)
 {
-	int ***optimum_ratios = NULL;
-	int total_combinations = n * (n - 1) / 2;
-	int n; /*Number of generated ratios*/
-	int **ratios = NULL; /*To store all the generated ratios*/
-	int i, j, k;
-	float a_share, b_share, c_share;
-	int a_max_index = -1, b_max_index = -1, c_max_index = -1;
-	float a_max_share = 0.0, b_max_share = 0.0, c_max_share = 0.0;
+	int **optimumRatios = NULL, **ratios = NULL, totalCombinations, i, j, k,
+	    aMaxIndex = -1, bMaxIndex = -1, cMaxIndex = -1;
+	float aShare, bShare, cShare, aMaxShare = 0.0, bMaxShare = 0.0,
+	      cMaxShare = 0.0;
 
-	ratios = allocate_2D_array(total_combinations, SALARYLEVELS);
+	printf("How many %s, do you want in this project: ", name->data.name);
+	scanf("%d", &n);
+	totalCombinations = binomial_coefficient(n + (SALARYLEVELS - 1),
+			SALARYLEVELS - 1);
+	ratios = allocate_2D_array(totalCombinations, SALARYLEVELS);
 	if (ratios != NULL)
 	{
-	/*********************************************************************/
 		/*call the function generating ratios here to store in ratios*/
-	/*********************************************************************/
+		ratios = ratios(n);
 
 		/*Finding top 3 ratios where a, b, c have the highest shares*/
-		for (i = 0; i < n; i++)
+		for (i = 0; i < totalCombinations; i++)
 		{
-			a_share = share_of_a(ratios[i][0], ratios[i][1], ratios[i][2]);
-			b_share = share_of_b(ratios[i][0], ratios[i][1], ratios[i][2]);
-			c_share = share_of_c(ratios[i][0], ratios[i][1], ratios[i][2]);
+			aShare = share_of_a(ratios[i][0], ratios[i][1], ratios[i][2]);
+			bShare = share_of_b(ratios[i][0], ratios[i][1], ratios[i][2]);
+			cShare = share_of_c(ratios[i][0], ratios[i][1], ratios[i][2]);
 
-			if (a_share > a_max_share)
+			if (aShare > aMaxShare)
 			{
-				a_max_share = a_share;
-				a_max_index = i;
+				aMaxShare = aShare;
+				aMaxIndex = i;
 			}
 
-			if (b_share > b_max_share)
+			if (bShare > bMaxShare)
 			{
-				b_max_share = b_share;
-				b_max_index = i;
+				bMaxShare = bShare;
+				bMaxIndex = i;
 			}
 
-			if (c_share > c_max_share)
+			if (cShare > cMaxShare)
 			{
-				c_max_share = c_share;
-				c_max_index = i;
+				cMaxShare = cShare;
+				cMaxIndex = i;
 			}
 		}
-		optimum_ratios = allocate_2D_array(3,SALARYLEVELS);
-		if (optimum_ratios != NULL)
+		optimumRatios = allocate_2D_array(OPTIMUM, SALARYLEVELS);
+		if (optimumRatios != NULL)
 		{
 			for (j = 0; j < 3; j++)
 			{
 				for (k = 0; k < 3; k++)
 				{
-					optimum_ratios[j][k] = ratios[(j == 0) ?
-						a_max_index : (j == 1) ?
-						b_max_index : c_max_index][k];
+					optimumRatios[j][k] = ratios[(j == 0) ?
+						aMaxIndex : (j == 1) ?
+						bMaxIndex : cMaxIndex][k];
 				}
 			}
 		}
 		/*Freeing memory allocated to the original ratios*/
 		free_2D_array(ratios, totalCombinations);
 
-		return (optimum_ratios);
+		return (optimumRatios);
 	}
 	exit(EXIT_FAILURE);
 }

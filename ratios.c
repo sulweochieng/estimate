@@ -134,7 +134,7 @@ int **optimum_ratios(node *name)
 	{
 		ratios = generate_ratio_list(n);
 		/*Finding top 3 ratios where a, b, c have the highest shares*/
-		find_max_shares(&ratios, &totalCombinations, &aMAxIndex,
+		find_max_shares(ratios, totalCombinations, &aMAxIndex,
 				&bMAxIndex, &cMaxIndex);
 
 		optimumRatios = allocate_2D_array(OPTIMUM, SALARYLEVELS);

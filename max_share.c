@@ -6,8 +6,8 @@
 /**
  * find_max_shares - finds ratios wherein a, b, or c are the highest.
  */
-void find_max_shares(int ***ratios, int *totalCombinations, int *aMaxIndex, int
-		*bMaxIndex, int *cMaxIndex)
+void find_max_shares(int ratios[][SALARYLEVELS], int totalCombinations, int
+		*aMaxIndex, int *bMaxIndex, int *cMaxIndex)
 {
 	int i;
 	float aShare, bShare, cShare, aMaxShare = 0.0, bMaxShare = 0.0,

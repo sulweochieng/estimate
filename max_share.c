@@ -22,17 +22,17 @@ void find_max_shares(int ratios[][SALARYLEVELS], int totalCombinations, int
         if (aShare > aMaxShare) 
 	{
             aMaxShare = aShare;
-            aMaxIndex = i;
+            *aMaxIndex = i;
         }
 
         if (bShare > bMaxShare) {
             bMaxShare = bShare;
-            bMaxIndex = i;
+            *bMaxIndex = i;
         }
 
         if (cShare > cMaxShare) {
             cMaxShare = cShare;
-            cMaxIndex = i;
+            *cMaxIndex = i;
         }
     }
 }

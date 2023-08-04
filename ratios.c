@@ -151,6 +151,7 @@ int **optimum_ratios(node *name)
 			}
 		}
 		free_2D_array(ratios, totalCombinations);
+		ratios = NULL;
 		return (optimumRatios);
 	}
 	exit(EXIT_FAILURE);

@@ -12,7 +12,7 @@
 int **allocate_2D_array(unsigned long long int rows, unsigned int cols)
 {
 	int **arrays2D = NULL;
-	int i, k;
+	unsigned long long int i, j;
 
 	arrays2D = malloc(sizeof(unsigned long long int) * rows);
 	if (!arrays2D)
@@ -33,4 +33,19 @@ int **allocate_2D_array(unsigned long long int rows, unsigned int cols)
 		exit(EXIT_FAILURE);
 	}
 	return (arrays2D);
+}
+
+/**
+ * free_2D_array - deallocating memory for members within a 2-D arrays, and
+ * eventually deallocating the 2-D array itself.
+ * @array2D: the array whose members and itself is to be deallocated.
+ * @rowSize: the number of rows of the 2-D array.
+ */
+void free_2D_array(int **array2D, unsigned long long int rowSize)
+{
+	unsigned long long int i;
+
+	for (i = 0; i < rowSize; i++)
+		free(array2D[i]);
+	free(array2D);
 }

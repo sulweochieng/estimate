@@ -35,4 +35,23 @@ typedef struct node
 	profession *data;
 	struct node *pointerNext;
 } node;
+
+/**
+ * struct Project - an identifier for a project.
+ * Description: the project type holds *head of different professions needed
+ * in a specific project descritption. It will also have a name member which
+ * will be used to identify the soecific project the client/user is working on.
+ * @heads: an array of heads, typically a classification of various related
+ * professions/professionals.
+ *	head represents a whole classification of closely related professions.
+ *	We can also refer to them as fields.
+ * @name: to indicate the name of the project the user is working on. Specific
+ * as posible.
+ */
+typedef struct Project
+{
+	char *name;
+	node heads[];
+} project;
+
 #endif

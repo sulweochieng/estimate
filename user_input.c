@@ -18,7 +18,12 @@ char *user_input_string(void)
 	char *buffer = NULL;
 
 	buffer = malloc(sizeof(char) * initialBufferSize);
-	alloc_err(buffer);
+	if (!buffer)
+	{
+		printf("Failed to allocate memory!\n");
+		exit(EXIT_FAILURE);
+	}
+
 	while ((c = getchar()) != EOF && c != '\n')
 	{
 		buffer[i] = c;
@@ -26,9 +31,13 @@ char *user_input_string(void)
 		/* reallocate memory if by any chance it surpurses */
 		if (i >= initialBufferSize - 1)
 		{
-			initial_buffer_size += BUFSIZE;
+			initialBufferSize += BUFSIZE;
 			buffer = realloc(buffer, sizeof(char) * initialBufferSize);
-			alloc_err(buffer); /* mem allocation failure check */
+			if (!buffer)
+			{
+				printf("Failed to allocate memory!\n");
+				exit(EXIT_FAILURE);
+			}
 		}
 	}
 	/* DON'T ALLOW user to enter EMPTY STRING */

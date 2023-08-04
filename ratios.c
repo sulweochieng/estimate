@@ -64,7 +64,7 @@ int *generate_ratio(int a, int b, int c)
 
 	gcd_val_ab = gcd(a, b);
 	gcd_val_bc = gcd(b, c);
-	ratio = malloc(levels * sizeof(int));
+	ratio = malloc(SALARYLEVELS * sizeof(int));
 	if (!ratio)
 	{
 		printf("Failed to allocate memory!\n");
@@ -120,12 +120,13 @@ int **generate_ratio_list(int n)
  * @name: the specific list member we would want to compute ratio for.
  * Return: a pointer to the array of the various ratios.
  */
-int **optimum_ratios(node *name)
+int **optimum_ratios(node *_name)
 {
-	int **optimumRatios = NULL, **ratios = NULL, totalCombinations, j, k;
+	int **optimumRatios = NULL, **ratios = NULL, totalCombinations;
 	int aMaxIndex = -1, bMaxIndex = -1, cMaxIndex = -1;
+	int n, j, k;
 
-	printf("How many %s, do you want in this project: ", name->data.name);
+	printf("How many %s, do you want in this project: ", _name->data->name);
 	scanf("%d", &n);
 	totalCombinations = binomial_coefficient(n + (SALARYLEVELS - 1),
 			SALARYLEVELS - 1);
@@ -134,8 +135,8 @@ int **optimum_ratios(node *name)
 	{
 		ratios = generate_ratio_list(n);
 		/*Finding top 3 ratios where a, b, c have the highest shares*/
-		find_max_shares(ratios, totalCombinations, &aMAxIndex,
-				&bMAxIndex, &cMaxIndex);
+		find_max_shares(ratios, totalCombinations, &aMaxIndex,
+				&bMaxIndex, &cMaxIndex);
 
 		optimumRatios = allocate_2D_array(OPTIMUM, SALARYLEVELS);
 		if (optimumRatios != NULL)

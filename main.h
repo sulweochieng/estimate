@@ -7,7 +7,7 @@
 #include <error.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include <fnctl.h>
+#include <fcntl.h>
 #include <string.h>
 
 #define BUFSIZE 124

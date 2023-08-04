@@ -11,15 +11,14 @@
  *	computed from the salary leves of every field used within a project.
  * Return: returns a pointer to the location of the newly created field.
  */
-Profession *create_field(void)
+profession *create_field(void)
 {
 	int i;
-	Profession *newfield = NULL;
+	profession *newfield = NULL;
 	static char *levels[3] = {"Junior", "Mid-level", "Senior"};
-	int levels = SALARYLEVELS;
 	int _salary;
 
-	newfield = malloc(sizeof(Profession));
+	newfield = malloc(sizeof(profession));
 	if (!newfield)
 	{
 		printf("Failed to allocate memory!\n");
@@ -27,8 +26,8 @@ Profession *create_field(void)
 	}
 	/* take input from the user to create a new field */
 	printf("Please enter the NAME of the new FIELD to create: ");
-	newfield->name = user_inputS();
-	newfield->salaryLevels = malloc(sizeof(salaryLevel) * levels);
+	newfield->name = user_input_string();
+	newfield->salaryLevels = malloc(sizeof(salaryLevel) * SALARYLEVELS);
 	if (!newfield->salaryLevels)
 	{
 		free(newfield->name);
@@ -36,14 +35,14 @@ Profession *create_field(void)
 		printf("Failed to allocate memory!\n");
 		exit(EXIT_FAILURE);
 	}
-	for (i = 0; i < levels; i++)
+	for (i = 0; i < SALARYLEVELS; i++)
 	{
 		newfield->salaryLevels[i].level = strdup(levels[i]);
 		printf("Please ENTER salary for a %s %s\n",
 				newfield->salaryLevels[i].level,
 				newfield->name);
 		scanf("%d", &_salary);
-		newfield->salaryLevels[i].level.salary = _salary;
+		newfield->salaryLevels[i].salary = _salary;
 	}
 	return (newfield);
 }
@@ -53,19 +52,19 @@ Profession *create_field(void)
  * @pointer: a pointer to type profession variable .
  * Return: returns pointer to the new node created.
  */
-node *new_node(Profession *pointer)
+node *new_node(profession *pointer)
 {
-	node *new = NULL;
+	node *_new = NULL;
 
-	new = malloc(sizeof(node));
-	if (!new)
+	_new = malloc(sizeof(node));
+	if (!_new)
 	{
 		printf("Failed to allocate memory!\n");
 		exit(EXIT_FAILURE);
 	}
-	new->data = pointer;
-	new->pointerNext = NULL;
-	return (new);
+	_new->data = pointer;
+	_new->pointerNext = NULL;
+	return (_new);
 }
 
 /**
@@ -83,8 +82,8 @@ node *create_list(node *_new)
 		printf("Failed to allocate memory!\n");
 		exit(EXIT_FAILURE);
 	}
-	head->data = new;
-	head->pointerNext = NULL;
+	head = _new;
+	_new = NULL;
 
 	return (head);
 }
@@ -94,17 +93,17 @@ node *create_list(node *_new)
  * @node: the node to be added to the list.
  * @head: pointer to the list to which we are adding the node unto.
  */
-void add_beg_list(node **head, node *node)
+void add_beg_list(node **head, node *newNode)
 {
-	node *temp = NULL;
+	node *temp;
 
 	temp = *head;
-	*head = node;
-	*head->pointerNext = temp;
+	*head = newNode;
+	(*head)->pointerNext = temp;
 	printf("Node %s was added succesfully at the begining of list!\n",
-			head->data.name);
+			(*head)->data->name);
 	temp = NULL;
-	node = NULL;
+	newNode = NULL;
 }
 
 /**
@@ -120,7 +119,7 @@ unsigned int node_count(node *head)
 	temp = head;
 	if (head == NULL)
 	{
-		printf("The list %s is empty\n");
+		printf("The list is empty\n");
 		exit(EXIT_SUCCESS);
 	}
 	while (temp != NULL)

@@ -27,7 +27,7 @@ int **allocate_2D_array(unsigned long long int rows, unsigned int cols)
 		if (!arrays2D[i])
 		{
 			for (j = 0; j < i; j++)
-				free(array[j]);
+				free(arrays2D[j]);
 			free(arrays2D);
 		}
 		exit(EXIT_FAILURE);

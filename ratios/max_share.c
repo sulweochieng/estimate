@@ -1,7 +1,7 @@
-#include "main.h"
-#include "types.h"
-#include "fprtyps.h"
-#include "globals.h"
+#include "../headers/main.h"
+#include "../headers/types.h"
+#include "../headers/fprtyps.h"
+#include "../headers/globals.h"
 
 /**
  * find_max_shares - finds ratios wherein a, b, or c are the highest.

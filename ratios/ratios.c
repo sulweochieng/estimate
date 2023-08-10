@@ -1,7 +1,11 @@
-#include "main.h"
+/*#include "main.h"
 #include "types.h"
 #include "fprtyps.h"
 #include "globals.h"
+*/
+#include <stdio.h>
+#include <stdlib.h>
+#define SALARYLEVELS 3
 /**
  * binomial_coefficient - a function that determines the number of possible
  * ratios when dividing 'n' items among 'k' individuals.
@@ -15,9 +19,9 @@
  *	k) represents the binomial coefficient, also known as "n choose k".
  * Return: returns the total number of possible ratios.
  */
-unsigned long long int binomial_coefficient(int n, int k)
+unsigned long int binomial_coefficient(int n, int k)
 {
-	unsigned long long int result = 1;
+	unsigned long int result = 1;
 	int i;
 
 	if (k > (n - k))
@@ -74,7 +78,7 @@ int *generate_ratio(int a, int b, int c)
 	ratioVals[1] = b / gcd_val_ab;
 	ratioVals[2] = c / gcd_val_bc;
 	for (i = 0; i < SALARYLEVELS; i++)
-		ratio[i] = ratioVals[i];
+		*(ratio + i) = ratioVals[i];
 
 	return (ratio);
 }
@@ -85,13 +89,15 @@ int *generate_ratio(int a, int b, int c)
  * @n: the number of specific specialists needed for the project.
  * Return: returns an array of arrays of the optimum ratios.
  */
-int **generate_ratio_list(int n)
+int *generate_ratio_list(int n)
 {
 	int a, b, c;
-	int numRatios = 0;
-	int **ratiosList = NULL;
+	unsigned long int numRatios = 0;
+	static int *(ratiosList)[SALARYLEVELS];
+	unsigned long int listSize;
 
-	ratiosList = malloc(sizeof(int *) * n * n);
+	/*listSize = binomial_coefficient(n, SALARYLEVELS);*/
+	/*ratiosList = malloc(sizeof(int *) * listSize);*/
 	/*All possible combinations of items for a (from 1 to n)*/
 	for (a = 1; a <= n; a++)
 	{
@@ -101,8 +107,10 @@ int **generate_ratio_list(int n)
 			/*Remaining n for the c*/
 			c = (n - a) - b;
 
-			ratiosList[numRatios] = malloc(sizeof(int) *
+			/*ratiosList[numRatios] = malloc(sizeof(int) *
 					SALARYLEVELS);
+					*/
+			/*ratiosList[numRatios] = generate_ratio(a, b, c);*/
 			ratiosList[numRatios][0] = a;
 			ratiosList[numRatios][1] = b;
 			ratiosList[numRatios][2] = c;
@@ -110,7 +118,8 @@ int **generate_ratio_list(int n)
 			numRatios++;
 		}
 	}
-
+	printf("possible ratios are %lu: \n", numRatios);
+	printf("the list-size is %lu: \n", listSize);
 	return (ratiosList);
 }
 
@@ -120,6 +129,7 @@ int **generate_ratio_list(int n)
  * @name: the specific list member we would want to compute ratio for.
  * Return: a pointer to the array of the various ratios.
  */
+/*
 int **optimum_ratios(node *_name)
 {
 	int **optimumRatios = NULL, **ratios = NULL, totalCombinations;
@@ -135,7 +145,7 @@ int **optimum_ratios(node *_name)
 	{
 		ratios = generate_ratio_list(n);
 		/*Finding top 3 ratios where a, b, c have the highest shares*/
-		find_max_shares(ratios, totalCombinations, &aMaxIndex,
+/*		find_max_shares(ratios, totalCombinations, &aMaxIndex,
 				&bMaxIndex, &cMaxIndex);
 
 		optimumRatios = allocate_2D_array(OPTIMUM, SALARYLEVELS);
@@ -156,4 +166,4 @@ int **optimum_ratios(node *_name)
 		return (optimumRatios);
 	}
 	exit(EXIT_FAILURE);
-}
+}*/

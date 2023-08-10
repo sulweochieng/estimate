@@ -13,10 +13,11 @@
  * @bMaxIndex: the index at which [b] is maximum.
  * @cMaxIndex: the index at which [c] is maximum.
  */
-void find_max_shares(int ratios[][SALARYLEVELS], int totalCombinations, int
-		*aMaxIndex, int *bMaxIndex, int *cMaxIndex)
+void find_max_shares(int ratios[][SALARYLEVELS], unsigned long int 
+		totalCombinations, unsigned long int *aMaxIndex, unsigned long
+		int *bMaxIndex, unsigned long int *cMaxIndex)
 {
-	int i;
+	unsigned long int i;
 	float aShare, bShare, cShare, aMaxShare = 0.0, bMaxShare = 0.0,
 	      cMaxShare = 0.0;
 

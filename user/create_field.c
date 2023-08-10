@@ -1,7 +1,7 @@
-#include "main.h"
-#include "types.h"
-#include "fprtyps.h"
-#include "globals.h"
+#include "../headers/main.h"
+#include "../headers/types.h"
+#include "../headers/fprtyps.h"
+#include "../headers/globals.h"
 
 /**
  * create_field - populatesalaryLevelss type Profession with appropriate data
@@ -62,7 +62,7 @@ node *new_node(profession *pointer)
 		printf("Failed to allocate memory!\n");
 		exit(EXIT_FAILURE);
 	}
-	_new->data = pointer;
+	/*_new->data = pointer;*/
 	_new->pointerNext = NULL;
 	return (_new);
 }
@@ -101,7 +101,7 @@ void add_beg_list(node **head, node *newNode)
 	*head = newNode;
 	(*head)->pointerNext = temp;
 	printf("Node %s was added succesfully at the begining of list!\n",
-			(*head)->data->name);
+			(*head)->data.name);
 	temp = NULL;
 	newNode = NULL;
 }

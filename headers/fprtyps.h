@@ -2,11 +2,11 @@
 #define FPRTYP_H
 /* This header file contains all function protypes used in this project */
 void add_beg_list(node **head, node *node);
-int **allocate_2D_array(unsigned long long int rows, unsigned int cols);
-unsigned long long int binomial_coefficient(int n, int k);
+int **allocate_2D_array(unsigned long int rows, unsigned int cols);
+unsigned long int binomial_coefficient(int n, int k);
 void find_max_shares(int ratios[][SALARYLEVELS], int totalCombinations, int
 		*aMaxIndex, int *bMaxIndex, int *cMaxIndex);
-void free_2D_array(int **array2D, unsigned long long int rowSize);
+void free_2D_array(int **array2D, unsigned long int rowSize);
 int gcd(int a, int b);
 int *generate_ratio(int a, int b, int c);
 int **generate_ratio_list(int n);

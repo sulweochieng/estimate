@@ -32,7 +32,7 @@ typedef struct Profession
  */
 typedef struct node
 {
-	profession *data;
+	profession data;
 	struct node *pointerNext;
 } node;
 
@@ -51,7 +51,7 @@ typedef struct node
 typedef struct Project
 {
 	char *name;
-	node heads[];
+	struct node *heads[];
 } project;
 
 #endif

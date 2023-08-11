@@ -6,6 +6,9 @@ int **allocate_2D_array(unsigned long int rows, unsigned int cols);
 unsigned long int binomial_coefficient(int n, int k);
 void find_max_shares(int ratios[][SALARYLEVELS], int totalCombinations, int
 		*aMaxIndex, int *bMaxIndex, int *cMaxIndex);
+void free_linked_list(node **head);
+void free_node(node **node);
+void free_node_data(profession **newField);
 void free_2D_array(int **array2D, unsigned long int rowSize);
 int gcd(int a, int b);
 int *generate_ratio(int a, int b, int c);

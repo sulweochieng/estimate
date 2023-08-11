@@ -20,7 +20,8 @@ int main(void)
 	if (head == NULL)
 		head = create_list(newNode);
 	add_beg_list(&head, newNode);
-	nodeNumber = node_count(head);
+	/**nodeNumber = node_count(head);
 	printf("We have %d nodes in the list\n", nodeNumber);
+	*/
 	return (0);
 }

@@ -16,8 +16,8 @@ float share_of_a(int a, int b, int c);
 float share_of_b(int a, int b, int c);
 float share_of_c(int a, int b, int c);
 char *user_input_string(void);
-node *create_list(node *_new);
-node *new_node(profession *pointer);
+node *create_list(node *newNode);
+node *new_node(profession *newData);
 profession *create_field(void);
 
 #endif

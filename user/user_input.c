@@ -13,8 +13,7 @@
  */
 char *user_input_string(void)
 {
-	int c;
-	size_t i = 0, initialBufferSize = BUFSIZE;
+	int c, i = 0, initialBufferSize = BUFSIZE;
 	char *buffer = NULL;
 
 	buffer = malloc(sizeof(char) * initialBufferSize);
@@ -28,7 +27,7 @@ char *user_input_string(void)
 	{
 		buffer[i] = c;
 		i++;
-		/* reallocate memory if by any chance it surpurses */
+		/* reallocate memory if by any chance it surpasses */
 		if (i >= initialBufferSize - 1)
 		{
 			initialBufferSize += BUFSIZE;
@@ -40,13 +39,6 @@ char *user_input_string(void)
 			}
 		}
 	}
-	/* DON'T ALLOW user to enter EMPTY STRING */
-	if (i == 0 || c == '\n')
-	{
-		free(buffer);
-		return (user_input_string());
-	}
-	buffer[i] = '\0'; /* Null terminate the input to mark it as a string */
-	printf("\n");
+	buffer[i] = '\0';  /*Null terminate the input to mark it as a string*/
 	return (buffer);
 }

@@ -9,7 +9,18 @@
  */
 int main(void)
 {
-	profession *newfield;
-	newfield = create_field();
+	int i;
+	profession *newPerson = NULL;
+	node *newNode = NULL;
+	node *head = NULL;
+	unsigned int nodeNumber;
+
+	newPerson = create_field();
+	newNode = new_node(newPerson);
+	if (head == NULL)
+		head = create_list(newNode);
+	add_beg_list(&head, newNode);
+	nodeNumber = node_count(head);
+	printf("We have %d nodes in the list\n", nodeNumber);
 	return (0);
 }

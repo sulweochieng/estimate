@@ -15,8 +15,8 @@ profession *create_field(void)
 {
 	int i;
 	profession *newfield = NULL;
-	static char *levels[3] = {"Junior", "Mid-level", "Senior"};
-	int _salary;
+	char *levels[3] = {"Junior", "Mid-level", "Senior"};
+	double _salary;
 
 	newfield = malloc(sizeof(profession));
 	if (!newfield)
@@ -26,7 +26,7 @@ profession *create_field(void)
 	}
 	/* take input from the user to create a new field */
 	printf("Please enter the NAME of the new FIELD to create: ");
-	newfield->name = user_input_string();
+	newfield->name = strdup(user_input_string());
 	newfield->salaryLevels = malloc(sizeof(salaryLevel) * SALARYLEVELS);
 	if (!newfield->salaryLevels)
 	{
@@ -41,7 +41,7 @@ profession *create_field(void)
 		printf("Please ENTER salary for a %s %s\n",
 				newfield->salaryLevels[i].level,
 				newfield->name);
-		scanf("%d", &_salary);
+		scanf("%lf", &_salary);
 		newfield->salaryLevels[i].salary = _salary;
 	}
 	return (newfield);
@@ -49,30 +49,30 @@ profession *create_field(void)
 
 /**
  * create_node - a function that creates a new node for my linked list.
- * @pointer: a pointer to type profession variable .
+ * @newData: pointer to type profession variable .
  * Return: returns pointer to the new node created.
  */
-node *new_node(profession *pointer)
+node *new_node(profession *newData)
 {
-	node *_new = NULL;
+	node *newNode = NULL;
 
-	_new = malloc(sizeof(node));
-	if (!_new)
+	newNode = malloc(sizeof(node));
+	if (!newNode)
 	{
 		printf("Failed to allocate memory!\n");
 		exit(EXIT_FAILURE);
 	}
-	/*_new->data = pointer;*/
-	_new->pointerNext = NULL;
-	return (_new);
+	newNode->data = newData;
+	newNode->pointerNext = NULL;
+	return (newNode);
 }
 
 /**
  * create_list - a funtion creating a new linked list.
- * @_new: a data node to be added into the list
+ * @newNode: a data node to be added into the list
  * Return: returns pointer to the head of the newly created list.
  */
-node *create_list(node *_new)
+node *create_list(node *newNode)
 {
 	node *head = NULL;
 
@@ -82,27 +82,31 @@ node *create_list(node *_new)
 		printf("Failed to allocate memory!\n");
 		exit(EXIT_FAILURE);
 	}
-	head = _new;
-	_new = NULL;
+	head = newNode;
+	newNode = NULL;
 
 	return (head);
 }
 
 /**
  * add_beg_list - adds a new node to the list at the the beginning of the list.
- * @node: the node to be added to the list.
+ * @newNode: the node to be added to the list.
  * @head: pointer to the list to which we are adding the node unto.
  */
 void add_beg_list(node **head, node *newNode)
 {
-	node *temp;
-
-	temp = *head;
+	if (*head == NULL)
+	{
+		printf("The list was empty\n");
+		*head = newNode;
+		newNode->pointerNext = NULL;
+		printf("Node %s was added successfully at the beginning of the\
+				list!\n", (*head)->data->name);
+	}
+	newNode->pointerNext = *head;
 	*head = newNode;
-	(*head)->pointerNext = temp;
 	printf("Node %s was added succesfully at the begining of list!\n",
-			(*head)->data.name);
-	temp = NULL;
+			(*head)->data->name);
 	newNode = NULL;
 }
 

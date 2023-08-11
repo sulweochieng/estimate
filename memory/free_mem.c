@@ -6,33 +6,34 @@
 /**
  * free_node_data - a function that frees all data assigned to a a node.
  */
-void free_node_data(profession *newField)
+void free_node_data(profession **newField)
 {
 	int i;
 	/*free the salary level data */
 	for (i = 0; i < SALARYLEVELS; i++)
 	{
-		free(newField->salaryLevels[i].level);
-		newField->salaryLevels[i].level = NULL;
-		free(newField->salaryLevels[i].salary);
-		newField->salaryLevelsp[i].salary = NULL;
+		free((*newField)->salaryLevels[i].level);
+		(*newField)->salaryLevels[i].level = NULL;
+		free((*newField)->salaryLevels[i].salary);
+		(*newField)->salaryLevelsp[i].salary = NULL;
 	}
-	free(newField->salaryLevels);
-	newField->salaryLevels = NULL;
-	free(newField->name);
-	newField->name = NULL;
-	free(newField);
-	newField = NULL;
+	free((*newField)->salaryLevels);
+	(*newField)->salaryLevels = NULL;
+	free((*newField)->name);
+	(*newField)->name = NULL;
+	free(*newField);
+	*newField = NULL;
 }
 
 /**
  * free_node - a function that frees all memory allocated to every node members
  * parsed to it.
  */
-void free_node(node *newNode)
+void free_node(node **node)
 {
-	free(newNode);
-	newNode = NULL;
+	free_node_data((*newNode)->data);
+	free(*newNode);
+	*newNode = NULL;
 }
 /**
  * free_linked_list - a function that frees a linked list.
@@ -40,4 +41,13 @@ void free_node(node *newNode)
  */
 void free_linked_list(node **head)
 {
+	node *temp = NULL;
+
+	temp = *head;
+	while (temp != NULL)
+	{
+		temp = temp->nextNode;
+		free_node(*head);
+		*head = temp;
+	}
 }

@@ -6,6 +6,7 @@
 /**
  * free_node - a function that frees all memory allocated to every node members
  * parsed to it.
+ * @temp: pointer to the pointer used to move across the linked list.
  * Description: the function starts by freeing the node's data, then continues
  * to free the node itself
  */
@@ -17,6 +18,8 @@ void free_node(node **temp)
 	for (i = 0; i < SALARYLEVELS; i++)
 	{
 		free((*temp)->data->salaryLevels[i].level);
+		printf("Successfully free'd: %s level\n",
+				(*temp)->data->salaryLevels[i].level);
 		(*temp)->data->salaryLevels[i].level = NULL;
 	}
 	free((*temp)->data->salaryLevels);

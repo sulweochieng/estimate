@@ -1,39 +1,30 @@
-#include "./headers/main.h"
-#include "./headers/types.h"
-#include "./headers/fprtyps.h"
-#include "./headers/globals.h"
-
-/**
- * free_node_data - a function that frees all data assigned to a a node.
- */
-void free_node_data(profession **newField)
-{
-	int i;
-	/*free the salary level data */
-	for (i = 0; i < SALARYLEVELS; i++)
-	{
-		free((*newField)->salaryLevels[i].level);
-		(*newField)->salaryLevels[i].level = NULL;
-		free((*newField)->salaryLevels[i].salary);
-		(*newField)->salaryLevelsp[i].salary = NULL;
-	}
-	free((*newField)->salaryLevels);
-	(*newField)->salaryLevels = NULL;
-	free((*newField)->name);
-	(*newField)->name = NULL;
-	free(*newField);
-	*newField = NULL;
-}
+#include "../headers/main.h"
+#include "../headers/types.h"
+#include "../headers/fprtyps.h"
+#include "../headers/globals.h"
 
 /**
  * free_node - a function that frees all memory allocated to every node members
  * parsed to it.
+ * Description: the function starts by freeing the node's data, then continues
+ * to free the node itself
  */
-void free_node(node **node)
+void free_node(node **temp)
 {
-	free_node_data((*newNode)->data);
-	free(*newNode);
-	*newNode = NULL;
+	int i;
+
+	/* free node data before freeing the node*/
+	for (i = 0; i < SALARYLEVELS; i++)
+	{
+		free((*temp)->data->salaryLevels[i].level);
+		(*temp)->data->salaryLevels[i].level = NULL;
+	}
+	free((*temp)->data->salaryLevels);
+	(*temp)->data->salaryLevels = NULL;
+	free((*temp)->data->name);
+	(*temp)->data->name = NULL;
+	free((*temp)->data);
+	(*temp)->data = NULL;
 }
 /**
  * free_linked_list - a function that frees a linked list.
@@ -42,12 +33,14 @@ void free_node(node **node)
 void free_linked_list(node **head)
 {
 	node *temp = NULL;
+	node *next = NULL;
 
 	temp = *head;
 	while (temp != NULL)
 	{
-		temp = temp->nextNode;
-		free_node(*head);
-		*head = temp;
+		next = temp->pointerNext;
+		free_node(&temp);
+		temp = next;
 	}
+	*head = NULL;
 }

@@ -24,7 +24,6 @@ profession *create_field(void)
 		printf("Failed to allocate memory!\n");
 		exit(EXIT_FAILURE);
 	}
-	/* take input from the user to create a new field */
 	printf("Please enter the NAME of the new FIELD to create: ");
 	newfield->name = strdup(user_input_string());
 	newfield->salaryLevels = malloc(sizeof(salaryLevel) * SALARYLEVELS);
@@ -43,6 +42,7 @@ profession *create_field(void)
 				newfield->name);
 		scanf("%lf", &_salary);
 		newfield->salaryLevels[i].salary = _salary;
+		newfield->salaryLevels[i].refCount = 1;
 	}
 	return (newfield);
 }
@@ -55,6 +55,7 @@ profession *create_field(void)
 node *new_node(profession *newData)
 {
 	node *newNode = NULL;
+	int i;
 
 	newNode = malloc(sizeof(node));
 	if (!newNode)
@@ -63,6 +64,8 @@ node *new_node(profession *newData)
 		exit(EXIT_FAILURE);
 	}
 	newNode->data = newData;
+	for (i = 0; i < SALARYLEVELS; i++)
+		newData->salaryLevels[i].refCount++;
 	newNode->pointerNext = NULL;
 	return (newNode);
 }

@@ -17,10 +17,14 @@ void free_node(node **temp)
 	/* free node data before freeing the node*/
 	for (i = 0; i < SALARYLEVELS; i++)
 	{
-		free((*temp)->data->salaryLevels[i].level);
-		printf("Successfully free'd: %s level\n",
-				(*temp)->data->salaryLevels[i].level);
-		(*temp)->data->salaryLevels[i].level = NULL;
+		(*temp)->data->salaryLevels[i].refCount--;
+		if ((*temp)->data->salaryLevels[i].refCount == 0)
+		{
+			free((*temp)->data->salaryLevels[i].level);
+			printf("Successfully free'd: %s level\n",
+					(*temp)->data->salaryLevels[i].level);
+			(*temp)->data->salaryLevels[i].level = NULL;
+		}
 	}
 	free((*temp)->data->salaryLevels);
 	(*temp)->data->salaryLevels = NULL;

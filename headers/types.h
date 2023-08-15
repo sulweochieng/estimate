@@ -10,6 +10,7 @@ typedef struct salaryLevel
 {
 	char *level;
 	double  salary;
+	int refCount;
 } salaryLevel;
 
 /**

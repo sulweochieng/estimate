@@ -70,4 +70,19 @@ typedef struct Ratio
 	int b;
 	int c;
 } ratio;
+
+/**
+ * struct Optimization - a type that gives descriptions to each optimazation
+ * levels of the project.
+ * @optLevel: the name of optimization level.
+ * @intro: a short description of the optimization level.
+ * @description: a short explainer of what the optLevel is. to give context to
+ * the user.
+ */
+typedef struct Optimization
+{
+	char *optLevel;
+	char *intro;
+	char *description;
+} opt;
 #endif

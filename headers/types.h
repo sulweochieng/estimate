@@ -55,4 +55,19 @@ typedef struct Project
 	struct node *heads[3];
 } project;
 
+/**
+ * struct Ratio - a type that defines members of the ratio to be computed.
+ * @a: first member.
+ *	Represents the Senior level of expertise.
+ * @b: second member.
+ *	Represents the Mid-level level of expertise.
+ * @c: third member.
+ *	Represents the Junior level of expertise.
+ */
+typedef struct Ratio
+{
+	int a;
+	int b;
+	int c;
+} ratio;
 #endif

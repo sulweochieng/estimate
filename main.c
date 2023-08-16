@@ -9,20 +9,20 @@
  */
 int main(void)
 {
-	int i;
-	profession *newPerson = NULL;
-	node *newNode = NULL;
-	node *head = NULL;
-	unsigned int nodeNumber;
+	int n, i;
+	unsigned long int count;
+	ratio ratioList[100];
 
-	newPerson = create_field();
-	newNode = new_node(newPerson);
-	if (head == NULL)
-		head = create_list(newNode);
-	add_beg_list(&head, newNode);
-	free_linked_list(&head);
-	/**nodeNumber = node_count(head);
-	printf("We have %d nodes in the list\n", nodeNumber);
-	*/
+	printf("How many AI/ML Devs do you want for the project?\n");
+	scanf("%d", &n);
+	generate_ratio_list(n, ratioList, &count);
+	printf("These are the possible ratios we can have for %d AI/ML Devs.\n",
+			n);
+	printf("==========================================================\n");
+	for (i = 0; i < count; i++)
+	{
+		printf("Ratio[%d] => %d:%d:%d\n", i + 1, ratioList[i].a,
+				ratioList[i].b, ratioList[i].c);
+	}
 	return (0);
 }

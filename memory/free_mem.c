@@ -17,10 +17,14 @@ void free_node(node **temp)
 	/* free node data before freeing the node*/
 	for (i = 0; i < SALARYLEVELS; i++)
 	{
+		printf("--------------------------------------------------\n");
+		printf("Trying to free %s level\n",
+				(*temp)->data->salaryLevels[i].level);
+		printf("--------------------------------------------------\n");
 		(*temp)->data->salaryLevels[i].refCount--;
 		if ((*temp)->data->salaryLevels[i].refCount == 0)
 		{
-			free((*temp)->data->salaryLevels[i].level);
+			free(&((*temp)->data->salaryLevels[i].level));
 			printf("Successfully free'd: %s level\n",
 					(*temp)->data->salaryLevels[i].level);
 			(*temp)->data->salaryLevels[i].level = NULL;
@@ -39,15 +43,24 @@ void free_node(node **temp)
  */
 void free_linked_list(node **head)
 {
+	node *current = NULL;
 	node *temp = NULL;
-	node *next = NULL;
+	int i;
 
-	temp = *head;
-	while (temp != NULL)
+	current = *head;
+	while (current != NULL)
 	{
-		next = temp->pointerNext;
-		free_node(&temp);
-		temp = next;
+		temp = current;
+		if (current->data != NULL)
+		{
+			for (i = 0; i < SALARYLEVELS; i++)
+				free(current->data->salaryLevels[i].level);
+			free(current->data->salaryLevels);
+			free(current->data->name);
+			free(current->data);
+		}
+		current = current->pointerNext;
+		free(temp);
 	}
 	*head = NULL;
 }

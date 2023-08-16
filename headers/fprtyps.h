@@ -11,7 +11,7 @@ void free_node(node **temp);
 void free_2D_array(int **array2D, unsigned long int rowSize);
 int gcd(int a, int b);
 int *generate_ratio(int a, int b, int c);
-int **generate_ratio_list(int n);
+void generate_ratio_list(int n, ratio *ratiosList, unsigned long int *count);
 unsigned int node_count(node *head);
 int **optimum_ratios(node *_name);
 float share_of_a(int a, int b, int c);

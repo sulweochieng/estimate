@@ -3,20 +3,18 @@
 /* This header file contains all function protypes used in this project */
 void add_beg_list(node **head, node *node);
 int **allocate_2D_array(unsigned long int rows, unsigned int cols);
-unsigned long int binomial_coefficient(int n, int k);
-void find_max_shares(int ratios[][SALARYLEVELS], int totalCombinations, int
-		*aMaxIndex, int *bMaxIndex, int *cMaxIndex);
+void equilibrium(int n, ratio *equilibrium);
+void equilibriumA(int n, ratio *equilibrium);
+void equilibriumB(int n, ratio *equilibrium);
+void equilibriumC(int n, ratio *equilibrium);
 void free_linked_list(node **head);
 void free_node(node **temp);
 void free_2D_array(int **array2D, unsigned long int rowSize);
-int gcd(int a, int b);
-int *generate_ratio(int a, int b, int c);
 void generate_ratio_list(int n, ratio *ratiosList, unsigned long int *count);
 unsigned int node_count(node *head);
-int **optimum_ratios(node *_name);
-float share_of_a(int a, int b, int c);
-float share_of_b(int a, int b, int c);
-float share_of_c(int a, int b, int c);
+void optimumA(int n, ratio *choice);
+void optimumB(int n, ratio *choice);
+void optimumC(int n, ratio *choice);
 char *user_input_string(void);
 node *create_list(node *newNode);
 node *new_node(profession *newData);

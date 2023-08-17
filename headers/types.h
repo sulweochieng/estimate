@@ -5,6 +5,7 @@
  * struct salaryLevel - defines how different experience levels are paid.
  * @level: defines a specific proficiency level.
  * @salary: defines the exact amount to be paid to the corelating level.
+ * @refCount: tracking the number of instances of salaryLevel created.
  */
 typedef struct salaryLevel
 {

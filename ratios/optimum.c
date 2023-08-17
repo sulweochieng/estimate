@@ -7,7 +7,7 @@
  * @n: the total number of Devs needed for the project.
  * @choice: type ratio that will store the ratio chosen.
  */
-void optimumA(int A, ratio *choice)
+void optimumA(int n, ratio *choice)
 {
 	int a, b, c;
 
@@ -36,7 +36,7 @@ void optimumA(int A, ratio *choice)
  * @n: the total number of Devs needed for the project.
  * @choice: type ratio that will store the ratio chosen.
  */
-void optimumB(int A, ratio *choice)
+void optimumB(int n, ratio *choice)
 {
 	int a, b, c;
 
@@ -65,7 +65,7 @@ void optimumB(int A, ratio *choice)
  * @n: the total number of Devs needed for the project.
  * @choice: type ratio that will store the ratio chosen.
  */
-void optimumC(int A, ratio *choice)
+void optimumC(int n, ratio *choice)
 {
 	int a, b, c;
 

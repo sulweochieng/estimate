@@ -9,12 +9,18 @@
  */
 int main(void)
 {
-	int n, i;
-	unsigned long int count;
-	ratio ratioList[100];
+	void (*ratio_func[7])(int, ratio*) = {optimumA, optimumB, optimumC,
+		equilibrium, equilibriumA, equilibriumB, equilibriumC};
+	int n, select, i, k, eq;
+	opt optLevels[4];
+	double cost[3] = {3000, 2000, 1000};
+	double pCost = 0.0;
+	ratio ratioS;
+	/*unsigned long int count;*/
+	/*ratio ratioList[100];*/
 	char *optimizationLevel[4] = {"Optimum", "Sub-Optimal", "Basic",
 		"Equillibrium"};
-	char *optIntro[4] = {"Highest level of optimization" , "Inter-mediate\
+	char *optIntro[4] = {"Highest level of optimization", "Inter-mediate\
 		level of optimization", "Basic level of optimization",
 		      "Balanced level of optimization"};
 	char *optDesc[4] = {"The level provides a ratio wherein the value for\
@@ -29,17 +35,45 @@ int main(void)
 			wherein the values for Senior, Mid-level, and Junior\
 			Devs are equal or close to equal."};
 
+	for (i = 0; i < 4; i++)
+	{
+		optLevels[i].optLevel = strdup(optimizationLevel[i]);
+		optLevels[i].intro = strdup(optIntro[i]);
+		optLevels[i].description = strdup(optDesc[i]);
+	}
 	printf("How many AI/ML Devs do you want for the project?\n");
 	scanf("%d", &n);
-	generate_ratio_list(n, ratioList, &count);
-	printf("These are the possible ratios we can have for %d AI/ML Devs.\n",
-			n);
-	printf("==========================================================\n");
-	for (i = 0; i < count; i++)
+	printf("What OPTIMUM LEVEL ? Enter corresponding number\n");
+	printf("\nFor reference below are the OPTIMUM LEVELS\n");
+	printf("=========================================\n");
+	for (k = 0; k < 4; k++)
+		printf("[%d]: %s\n", k + 1,  optLevels[k].optLevel);
+	printf("=========================================\n");
+	scanf("%d", &select);
+	printf("You have selected %s \n", optLevels[select - 1].optLevel);
+	if (select > 3)
 	{
-		printf("Ratio[%d] => %d:%d:%d\n", i + 1, ratioList[i].a,
-				ratioList[i].b, ratioList[i].c);
+		if (!(n % 3 == 0))
+		{
+			printf("WHAT LEVEL OF EXPERTISE DO YOU WANT MORE?\n");
+			printf(" 1. SENIOR DEVS\n");
+			printf(" 2. MID-LEVEL DEVS\n");
+			printf(" 3. JUNIOR DEVS\n");
+			printf("Please enter the corresponding number: ");
+			scanf("%d", &eq);
+			ratio_func[eq + 3](n, &ratioS);
+			pCost = ((ratioS.a) * cost[1]) + ((ratioS.b) * cost[2])
+				+ ((ratioS.c) * cost[3]);
+			printf("The Project will cost you: %lf\n", pCost);
+		} 
+		else
+		{
+			ratio_func[select - 1](n, &ratioS);
+			pCost = ((ratioS.a) * cost[1]) + ((ratioS.b) * cost[2]) +
+				((ratioS.c) * cost[3]);
+			printf("The Project will cost you: %lf\n", pCost);
+		}
 	}
-	printf("%s\n", optDesc[2]);
+	/*generate_ratio_list(n, ratioList, &count);*/
 	return (0);
 }

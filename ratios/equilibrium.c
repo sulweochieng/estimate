@@ -10,9 +10,9 @@
  */
 void equilibriumA(int n, ratio *equilibrium)
 {
-	equilibrium.a = (n / SALARYLEVELS) + (n % SALARYLEVELS);
-	equilibrium.b = n / SALARYLEVELS;
-	equilibrium.c = n / SALARYLEVELS;
+	equilibrium->a = (n / SALARYLEVELS) + (n % SALARYLEVELS);
+	equilibrium->b = n / SALARYLEVELS;
+	equilibrium->c = n / SALARYLEVELS;
 }
 
 /**
@@ -23,9 +23,9 @@ void equilibriumA(int n, ratio *equilibrium)
  */
 void equilibriumB(int n, ratio *equilibrium)
 {
-	equilibrium.a = n / SALARYLEVELS;
-	equilibrium.b = (n / SALARYLEVELS) + (n % SALARYLEVELS);
-	equilibrium.c = n / SALARYLEVELS;
+	equilibrium->a = n / SALARYLEVELS;
+	equilibrium->b = (n / SALARYLEVELS) + (n % SALARYLEVELS);
+	equilibrium->c = n / SALARYLEVELS;
 }
 
 /**
@@ -36,9 +36,9 @@ void equilibriumB(int n, ratio *equilibrium)
  */
 void equilibriumC(int n, ratio *equilibrium)
 {
-	equilibrium.a = n / SALARYLEVELS;
-	equilibrium.b = n / SALARYLEVELS;
-	equilibrium.c = (n / SALARYLEVELS) + (n % SALARYLEVELS);
+	equilibrium->a = n / SALARYLEVELS;
+	equilibrium->b = n / SALARYLEVELS;
+	equilibrium->c = (n / SALARYLEVELS) + (n % SALARYLEVELS);
 }
 
 /**
@@ -50,7 +50,7 @@ void equilibriumC(int n, ratio *equilibrium)
  */
 void equilibrium(int n, ratio *equilibrium)
 {
-	equilibrium.a = n / SALARYLEVELS;
-	equilibrium.b = n / SALARYLEVELS;
-	equilibrium.c = n / SALARYLEVELS;
+	equilibrium->a = n / SALARYLEVELS;
+	equilibrium->b = n / SALARYLEVELS;
+	equilibrium->c = n / SALARYLEVELS;
 }

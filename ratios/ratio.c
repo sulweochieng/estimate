@@ -25,4 +25,5 @@ void generate_ratio_list(int n, ratio *ratiosList, unsigned long int *count)
 			(*count)++;
 		}
 	}
+	printf("%lu POSIBLE RATIOS\n", *count);
 }

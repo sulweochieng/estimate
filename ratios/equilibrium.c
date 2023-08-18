@@ -13,6 +13,8 @@ void equilibriumA(int n, ratio *equilibrium)
 	equilibrium->a = (n / SALARYLEVELS) + (n % SALARYLEVELS);
 	equilibrium->b = n / SALARYLEVELS;
 	equilibrium->c = n / SALARYLEVELS;
+	printf ("[%d]:[%d]:[%d]\n", equilibrium->a, equilibrium->b,
+			equilibrium->c);
 }
 
 /**

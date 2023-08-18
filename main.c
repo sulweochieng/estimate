@@ -14,10 +14,10 @@ int main(void)
 	int n, select, i, k, eq;
 	opt optLevels[4];
 	double cost[3] = {3000, 2000, 1000};
-	double pCost = 0.0;
+	double pCost;
 	ratio ratioS;
-	/*unsigned long int count;*/
-	/*ratio ratioList[100];*/
+	unsigned long int count, j;
+	ratio ratioList[100];
 	char *optimizationLevel[4] = {"Optimum", "Sub-Optimal", "Basic",
 		"Equillibrium"};
 	char *optIntro[4] = {"Highest level of optimization", "Inter-mediate\
@@ -43,8 +43,8 @@ int main(void)
 	}
 	printf("How many AI/ML Devs do you want for the project?\n");
 	scanf("%d", &n);
-	printf("What OPTIMUM LEVEL ? Enter corresponding number\n");
-	printf("\nFor reference below are the OPTIMUM LEVELS\n");
+	printf("What OPTIMUM LEVEL? Enter corresponding number\n");
+	printf("For reference below are the OPTIMUM LEVELS\n");
 	printf("=========================================\n");
 	for (k = 0; k < 4; k++)
 		printf("[%d]: %s\n", k + 1,  optLevels[k].optLevel);
@@ -62,18 +62,55 @@ int main(void)
 			printf("Please enter the corresponding number: ");
 			scanf("%d", &eq);
 			ratio_func[eq + 3](n, &ratioS);
-			pCost = ((ratioS.a) * cost[1]) + ((ratioS.b) * cost[2])
-				+ ((ratioS.c) * cost[3]);
-			printf("The Project will cost you: %lf\n", pCost);
+			pCost = ((ratioS.a) * (cost[0])) + ((ratioS.b) *
+					(cost[1])) + ((ratioS.c) * (cost[2]));
+			printf("[%d]:[%d]:[%d]\n", ratioS.a, ratioS.b,
+					ratioS.c);
+			printf("[%.2lf]:[%.2lf]:[%.2lf]\n", cost[0], cost[1], cost[2]);
+			printf("=========================================\n");
+			printf("The Project will cost you: %.2lf\n", pCost);
+			printf("=========================================\n");
+			printf("Below is the distribution of Devs\n");
+			printf("SENIOR DEVS = %d\n", ratioS.a);
+			printf("MID-LEVEL DEVS = %d\n", ratioS.b);
+			printf("JUNIOR DEVS = %d\n", ratioS.c);
+			printf("=========================================\n");
 		} 
 		else
 		{
 			ratio_func[select - 1](n, &ratioS);
-			pCost = ((ratioS.a) * cost[1]) + ((ratioS.b) * cost[2]) +
-				((ratioS.c) * cost[3]);
-			printf("The Project will cost you: %lf\n", pCost);
+			pCost = ((ratioS.a) * cost[0]) + ((ratioS.b) * cost[1]) +
+				((ratioS.c) * cost[2]);
+			printf("=========================================\n");
+			printf("The Project will cost you: %.2lf\n", pCost);
+			printf("=========================================\n");
+			printf("Below is the distribution of Devs\n");
+			printf("SENIOR DEVS = %d\n", ratioS.a);
+			printf("MID-LEVEL DEVS = %d\n", ratioS.b);
+			printf("JUNIOR DEVS = %d\n", ratioS.c);
+			printf("=========================================\n");
 		}
 	}
-	/*generate_ratio_list(n, ratioList, &count);*/
+	/*generate_ratio_list(n, ratioList, &count);
+	for (j = 0; j < count; j++)
+	{
+		printf("[%lu] = %d : %d : %d\n", j + 1, ratioList[j].a,
+				ratioList[j].b, ratioList[j].c);
+	}*/
+	else
+	{
+		ratio_func[select - 1](n, &ratioS);
+		pCost = ((ratioS.a) * cost[0]) + ((ratioS.b) * cost[1]) +
+			((ratioS.c) * cost[2]);
+		printf("=========================================\n");
+		printf("The Project will cost you: %.2lf\n", pCost);
+		printf("=========================================\n");
+		printf("Below is the distribution of Devs\n");
+		printf("SENIOR DEVS = %d\n", ratioS.a);
+		printf("MID-LEVEL DEVS = %d\n", ratioS.b);
+		printf("JUNIOR DEVS = %d\n", ratioS.c);
+		printf("=========================================\n");
+	}
+
 	return (0);
 }

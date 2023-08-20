@@ -3,12 +3,12 @@
 #include "../headers/fprtyps.h"
 
 /**
- * equilibriumA -determins equillibrium whence [a]/Senior Dev has the highest
+ * equilibrium_a -determins equillibrium whence [a]/Senior Dev has the highest
  * number.
  * @n: the number of Devs needed for the project.
  * @equilibrium: varibale to hold the value of approriate ratio chosen.
  */
-void equilibriumA(int n, ratio *equilibrium)
+void equilibrium_a(int n, ratio *equilibrium)
 {
 	equilibrium->a = (n / SALARYLEVELS) + (n % SALARYLEVELS);
 	equilibrium->b = n / SALARYLEVELS;
@@ -18,12 +18,12 @@ void equilibriumA(int n, ratio *equilibrium)
 }
 
 /**
- * equilibriumB - determins equillibrium whence [b]/Mid-Level Dev has the
+ * equilibrium_b - determins equillibrium whence [b]/Mid-Level Dev has the
  * highest number.
  * @n: the number of Devs needed for the project.
  * @equilibrium: varibale to hold the value of approriate ratio chosen.
  */
-void equilibriumB(int n, ratio *equilibrium)
+void equilibrium_b(int n, ratio *equilibrium)
 {
 	equilibrium->a = n / SALARYLEVELS;
 	equilibrium->b = (n / SALARYLEVELS) + (n % SALARYLEVELS);
@@ -31,12 +31,12 @@ void equilibriumB(int n, ratio *equilibrium)
 }
 
 /**
- * equilibriumC - determins equillibrium whence [c]/Junior Dev has the highest
+ * equilibrium_c - determins equillibrium whence [c]/Junior Dev has the highest
  * number .
  * @n: the number of Devs needed for the project.
  * @equilibrium: varibale to hold the value of approriate ratio chosen.
  */
-void equilibriumC(int n, ratio *equilibrium)
+void equilibrium_c(int n, ratio *equilibrium)
 {
 	equilibrium->a = n / SALARYLEVELS;
 	equilibrium->b = n / SALARYLEVELS;

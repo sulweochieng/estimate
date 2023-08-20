@@ -103,8 +103,8 @@ void add_beg_list(node **head, node *newNode)
 		printf("The list was empty\n");
 		*head = newNode;
 		newNode->pointerNext = NULL;
-		printf("Node %s was added successfully at the beginning of the\
-				list!\n", (*head)->data->name);
+		printf("Node %s was added successfully at the beginning\n"
+				, (*head)->data->name);
 	}
 	newNode->pointerNext = *head;
 	*head = newNode;

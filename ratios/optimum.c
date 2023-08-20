@@ -3,11 +3,11 @@
 #include "../headers/fprtyps.h"
 
 /**
- * optimumA - uses [a]/ Senior Dev number at maximum.
+ * optimum_a - uses [a]/ Senior Dev number at maximum.
  * @n: the total number of Devs needed for the project.
  * @choice: type ratio that will store the ratio chosen.
  */
-void optimumA(int n, ratio *choice)
+void optimum_a(int n, ratio *choice)
 {
 	int a, b, c;
 
@@ -32,11 +32,11 @@ void optimumA(int n, ratio *choice)
 }
 
 /**
- * optimumB - uses [b]/ Mid-Level Dev number at maximum.
+ * optimum_b - uses [b]/ Mid-Level Dev number at maximum.
  * @n: the total number of Devs needed for the project.
  * @choice: type ratio that will store the ratio chosen.
  */
-void optimumB(int n, ratio *choice)
+void optimum_b(int n, ratio *choice)
 {
 	int a, b, c;
 
@@ -61,11 +61,11 @@ void optimumB(int n, ratio *choice)
 }
 
 /**
- * optimumC - uses [c]/ Junior Dev number at maximum.
+ * optimum_c - uses [c]/ Junior Dev number at maximum.
  * @n: the total number of Devs needed for the project.
  * @choice: type ratio that will store the ratio chosen.
  */
-void optimumC(int n, ratio *choice)
+void optimum_c(int n, ratio *choice)
 {
 	int a, b, c;
 

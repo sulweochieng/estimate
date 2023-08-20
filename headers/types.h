@@ -2,6 +2,18 @@
 #define TYPES_H
 
 /**
+ * struct devLevels - defines different experience levels.
+ * @a: represnts the highest level.
+ * @b: represents the mid level.
+ * @c: represents the junior level.
+ */
+typedef struct devLevels
+{
+	char *a;
+	char *b;
+	char *c;
+} devLevels;
+/**
  * struct salaryLevel - defines how different experience levels are paid.
  * @level: defines a specific proficiency level.
  * @salary: defines the exact amount to be paid to the corelating level.
@@ -75,15 +87,16 @@ typedef struct Ratio
 /**
  * struct Optimization - a type that gives descriptions to each optimazation
  * levels of the project.
- * @optLevel: the name of optimization level.
- * @intro: a short description of the optimization level.
- * @description: a short explainer of what the optLevel is. to give context to
+ * @levelName: the name of optimization level.
+ * @levelIntro: a short description of the optimization level.
+ * @levelDescp: a short explainer of what the optLevel is. to give context to
  * the user.
  */
 typedef struct Optimization
 {
-	char *optLevel;
-	char *intro;
-	char *description;
+	char *levelName[OPTLEVELS];
+	char *levelIntro[OPTLEVELS];
+	char *levelDescp[OPTLEVELS];
 } opt;
+
 #endif

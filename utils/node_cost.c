@@ -17,7 +17,7 @@ void node_cost_update(node *project, ratio *ratioS, double *projectCost)
 	node *temp = project;
 	double nodeCost, totalNodeCost = 0.0;
 
-	while (current != NULL)
+	while (temp != NULL)
 	{
 		nodeCost = ((ratioS->a) *
 				(temp->data->salaryLevels[0].salary)) +
@@ -28,6 +28,6 @@ void node_cost_update(node *project, ratio *ratioS, double *projectCost)
 	}
 	*projectCost = totalNodeCost;
 	printf("=========================================\n");
-	printf("The Project will cost you: %.2lf\n", pCost);
+	printf("The Project will cost you: %.2lf\n", *projectCost);
 	printf("=========================================\n");
 }

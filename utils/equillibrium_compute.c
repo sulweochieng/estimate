@@ -14,11 +14,11 @@
  * @levelIndex: the optimal level index required for the project.
  */
 void equillibrium_compute(ratio *ratioS, int devNum, node *projectName, double
-		projectCost, int levelIndex)
+		*projectCost, int levelIndex)
 {
-	void (*ratio_func[COST_OPTIONS])(int, ratio *) = {optimumA, optimumB,
-		optimumC, equilibrium, equilibriumA, equilibriumB,
-		equilibribriumC};
+	void (*ratio_func[COST_OPTIONS])(int, ratio *) = {optimum_a, optimum_b,
+		optimum_c, equilibrium, equilibrium_a, equilibrium_b,
+		equilibrium_c};
 	devLevels level;
 	int eqChoice;
 

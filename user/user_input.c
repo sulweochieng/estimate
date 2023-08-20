@@ -1,7 +1,7 @@
 #include "../headers/main.h"
 #include "../headers/types.h"
 #include "../headers/fprtyps.h"
-#include "../headers/globals.h"
+
 /**
  * user_input_string - a function that reads a string from a user and returns a
  * pointer to the read stream and stores it unto a buffer.

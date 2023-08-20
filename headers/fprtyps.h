@@ -1,5 +1,7 @@
 #ifndef FPRTYP_H
 #define FPRTYP_H
+
+#include "types.h"
 /* This header file contains all function protypes used in this project */
 void add_beg_list(node **head, node *node);
 int **allocate_2D_array(unsigned long int rows, unsigned int cols);
@@ -8,7 +10,7 @@ void equilibrium_a(int n, ratio *equilibrium);
 void equilibrium_b(int n, ratio *equilibrium);
 void equilibrium_c(int n, ratio *equilibrium);
 void equillibrium_compute(ratio *ratioS, int devNum, node *projectName, double
-		projectCost, int levelIndex);
+		*projectCost, int levelIndex);
 void free_linked_list(node **head);
 void free_node(node **temp);
 void free_2D_array(int **array2D, unsigned long int rowSize);

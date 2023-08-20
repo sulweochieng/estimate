@@ -8,10 +8,10 @@
  */
 int main(void)
 {
-	node *projectName
+	node *projectName;
 	double projectCost = 0.0;
 
 	list_init(projectName);
-	projectCostCalc(projectName, &projectCost)
+	project_cost_calc(projectName, &projectCost);
 	return (0);
 }

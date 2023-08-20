@@ -1,7 +1,6 @@
 #include "../headers/main.h"
 #include "../headers/types.h"
 #include "../headers/fprtyps.h"
-#include "../headers/globals.h"
 
 /**
  * create_field - populatesalaryLevelss type Profession with appropriate data
@@ -103,8 +102,8 @@ void add_beg_list(node **head, node *newNode)
 		printf("The list was empty\n");
 		*head = newNode;
 		newNode->pointerNext = NULL;
-		printf("Node %s was added successfully at the beginning\n"
-				, (*head)->data->name);
+		printf("Node %s was added successfully at the beginning\n",
+				(*head)->data->name);
 	}
 	newNode->pointerNext = *head;
 	*head = newNode;

@@ -11,7 +11,7 @@
 void list_init(node *listName)
 {
 	profession *newProf = NULL;
-	node newNode = NULL;
+	node *newNode = NULL;
 	node *devList = NULL;
 
 	if (listName == NULL)

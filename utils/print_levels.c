@@ -1,5 +1,5 @@
-#include "..headers/main.h"
-#include "..headers/fprtyps.h"
+#include "../headers/main.h"
+#include "../headers/fprtyps.h"
 #include "../headers/types.h"
 /**
  * print_levels -  printd to stdout professional levels.
@@ -7,7 +7,7 @@
  */
 void print_levels(devLevels *levels)
 {
-	initLevels(levels);
+	init_levels(levels);
 	printf("WHAT LEVEL OF EXPERTISE DO YOU WANT MORE?\n");
 	printf("==========================================================\n");
 	printf("[1]. %s\n", levels->a);

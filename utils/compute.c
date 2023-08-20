@@ -9,9 +9,9 @@
  */
 void project_cost_calc(node *projectName, double *projectCost)
 {
-	void (*ratio_func[COST_OPTIONS])(int, ratio *) = {optimumA, optimumB,
-		optimumC, equilibrium, equilibriumA, equilibriumB,
-		equilibribriumC};
+	void (*ratio_func[COST_OPTIONS])(int, ratio *) = {optimum_a, optimum_b,
+		optimum_c, equilibrium, equilibrium_a, equilibrium_b,
+		equilibrium_c};
 	opt optInfo;
 	ratio ratioS;
 	int j, devNum, levIndex;
@@ -26,18 +26,18 @@ void project_cost_calc(node *projectName, double *projectCost)
 		printf("\n[%d]. %s\n", j + 1, optInfo.levelName[j]);
 	printf("----------------------------------------------------------\n");
 	printf("\nPLEASE CHOOSE A LEVEL BY ENTERING A CORRESPONDING INDEX: ");
-	scanf("%s", &levIndex);
-	printf("You've slected %s\n", optInfo.levelName[levelIndex - 1]);
-	printf("%s\n", optInfo.levelIntro[levelIndex - 1]);
+	scanf("%d", &levIndex);
+	printf("You've slected %s\n", optInfo.levelName[levIndex - 1]);
+	printf("%s\n", optInfo.levelIntro[levIndex - 1]);
 	printf("----------------------------------------------------------\n");
 	if (levIndex > 3)
 	{
 		equillibrium_compute(&ratioS, devNum, projectName, projectCost,
-				levelIndex);
+				levIndex);
 	}
 	else
 	{
-		ratio_func[levelIndex - 1](devNum, &ratioS);
+		ratio_func[levIndex - 1](devNum, &ratioS);
 		node_cost_update(projectName, &ratioS, projectCost);
 	}
 }

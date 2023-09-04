@@ -7,7 +7,7 @@
  * @projectName: type node pointing to selcted items from type node devList.
  * @projectCost: variable holding the total project cost.
  */
-void project_cost_calc(node *projectName, double *projectCost)
+void project_cost_calc(node **projectName, double *projectCost)
 {
 	void (*ratio_func[COST_OPTIONS])(int, ratio *) = {optimum_a, optimum_b,
 		optimum_c, equilibrium, equilibrium_a, equilibrium_b,
@@ -17,7 +17,7 @@ void project_cost_calc(node *projectName, double *projectCost)
 	int j, devNum, levIndex;
 
 	printf("How many %s do you want for this project: ",
-			projectName->data->name);
+			(*projectName)->data->name);
 	scanf("%d", &devNum);
 	printf("BELOW ARE THE CURRENT AVAILABLE OPTIMUM LEVELS\n");
 	printf("----------------------------------------------------------\n");

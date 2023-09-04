@@ -2,6 +2,19 @@
 #define TYPES_H
 
 /**
+ * struct salaries - outlines salaries for the availbale proficiency levels.
+ * @senior: senior developer's salary.
+ * @midLevel: mid-level developer's salary.
+ * @junior: junior developer's salary.
+ */
+typedef struct salaries
+{
+	double senior;
+	double midLevel;
+	double junior;
+} sal;
+
+/**
  * struct devLevels - defines different experience levels.
  * @a: represnts the highest level.
  * @b: represents the mid level.
@@ -12,18 +25,17 @@ typedef struct devLevels
 	char *a;
 	char *b;
 	char *c;
+
 } devLevels;
 /**
  * struct salaryLevel - defines how different experience levels are paid.
  * @level: defines a specific proficiency level.
  * @salary: defines the exact amount to be paid to the corelating level.
- * @refCount: tracking the number of instances of salaryLevel created.
  */
 typedef struct salaryLevel
 {
 	char *level;
 	double  salary;
-	int refCount;
 } salaryLevel;
 
 /**
@@ -36,17 +48,17 @@ typedef struct salaryLevel
 typedef struct Profession
 {
 	char *name;
-	salaryLevel *salaryLevels;
+	salaryLevel salaryLevels[SALARYLEVELS];
 } profession;
 
 /**
  * struct node - a collective represantation of the list members.
  * @data: data bundle of a typical list member.
- * @pointerNext: pointer to the next member list.
+ * @pointerNext: pointer to the next member of the doubly linked list.
  */
 typedef struct node
 {
-	profession *data;
+	profession data;
 	struct node *pointerNext;
 } node;
 

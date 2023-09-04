@@ -3,6 +3,19 @@
 #include "../headers/fprtyps.h"
 
 /**
+ * clear_input_buffer - clears input buffer.
+ * Description: called just before calling a function that takes in a user's
+ * input from the keyboard, to avoid accidentallly capturing an empty string as
+ * input before a user actually inputs.
+ */
+void clear_input_buffer(void)
+{
+	int c;
+	while ((c = getchar()) != '\n' && c != EOF)
+		;
+}
+
+/**
  * user_input_string - a function that reads a string from a user and returns a
  * pointer to the read stream and stores it unto a buffer.
  * Description: this function is designed to read a string from the stdin. The
@@ -26,8 +39,7 @@ char *user_input_string(void)
 	while ((c = getchar()) != EOF && c != '\n')
 	{
 		buffer[i] = c;
-		i++;
-		/* reallocate memory if by any chance it surpasses */
+		++i;
 		if (i >= initialBufferSize - 1)
 		{
 			initialBufferSize += BUFSIZE;
@@ -39,6 +51,6 @@ char *user_input_string(void)
 			}
 		}
 	}
-	buffer[i] = '\0';  /*Null terminate the input to mark it as a string*/
+	buffer[i] = '\0';
 	return (buffer);
 }

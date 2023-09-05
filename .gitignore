@@ -56,3 +56,8 @@ dkms.conf
 
 # Log files
 *.log
+# Ignore files with .c.swp, .c.swo, .c.swm, and .c.swn extensions
+*.c.swp
+*.c.swo
+*.c.swm
+*.c.swn

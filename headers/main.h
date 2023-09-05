@@ -9,6 +9,7 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include <string.h>
+#include <stdbool.h>
 
 #define BUFSIZE 124
 #define SALARYLEVELS 3 /*defines possible salary levels */

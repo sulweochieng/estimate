@@ -18,6 +18,7 @@ void free_list(node *head);
 void generate_ratio_list(int n, ratio *ratiosList, unsigned long int *count);
 void init_levels(devLevels *levels);
 void init_optimization_info(opt *info);
+bool is_node_in_project(node *project, node *selectedNode);
 void list_init(node **head, profession *newData);
 int *node_count(node **head, int *counter);
 void node_cost_update(node *project, ratio *ratioS, double *projectCost);

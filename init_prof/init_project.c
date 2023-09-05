@@ -27,16 +27,24 @@ void create_project(node **database, node **project)
 		}
 		if (selectedNode != NULL)
 		{
-			projectNode = malloc(sizeof(node));
-			if (!projectNode)
+			if (!is_node_in_project(*project, selectedNode))
 			{
-				printf("Failed to allocate memory\n");
-				exit(EXIT_FAILURE);
+				projectNode = malloc(sizeof(node));
+				if (!projectNode)
+				{
+					printf("Failed to allocate memory\n");
+					exit(EXIT_FAILURE);
+				}
+				projectNode->data = selectedNode->data;
+				projectNode->pointerNext = *project;
+				*project = projectNode;
+				tracker = 0;
 			}
-			projectNode->data = selectedNode->data;
-			projectNode->pointerNext = *project;
-			*project = projectNode;
-			tracker = 0;
+			else
+			{
+				printf("%s EXISTS IN PROJECT\n",
+						selectedNode->data.name);
+			}
 		}
 		printf("DO YOU WANT TO ADD TO PROJECT\n");
 		printf("[1]. Yes\n[2]. No\n");
@@ -114,4 +122,23 @@ void rm_from_project(node **project)
 	scanf("%d", &index);
 	if (index == 1)
 		rm_from_project(project);
+}
+
+/**
+ * is_node_in_project - checks if a node already exists in the project.
+ * @project: the project database.
+ * @selectedNode: the new node to be added.
+ * Return: returns true if it exist, or false if it deosn't exist.
+ */
+bool is_node_in_project(node *project, node *selectedNode)
+{
+	while (project != NULL)
+	{
+		if (strcmp(project->data.name, selectedNode->data.name) == 0)
+		{
+			return (true);
+		}
+		project = project->pointerNext;
+	}
+	return (false);
 }

@@ -103,7 +103,7 @@ int *node_count(node **head, int *counter)
 }
 
 /**
- * print_db - prints the name of all professions available in the list.
+ * display_db - prints the name of all professions available in the list.
  * @db: the database to print its data.
  */
 void display_db(node **db)
@@ -114,7 +114,7 @@ void display_db(node **db)
 	if (temp == NULL)
 	{
 		printf("The database is empty!!\n");
-		exit (EXIT_SUCCESS);
+		exit(EXIT_SUCCESS);
 	}
 	printf("THE DATABASE ENTRIES\n");
 	printf("==================================================\n");

@@ -3,7 +3,7 @@
 #include "../headers/fprtyps.h"
 
 /**
- * init_list - creates a list.
+ * create_database - creates a list.
  * Description: If the list doesn't exist, the function creates the list,
  * if the list exist, the function inserts the new node data unto the list.
  * @head: the list to initialise.

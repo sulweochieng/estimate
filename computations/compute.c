@@ -15,9 +15,13 @@ void project_cost_calc(node **projectName, double *projectCost)
 	opt optInfo;
 	ratio ratioS;
 	int j, devNum, levIndex;
+	node *current = *projectName;
+
+	while (current != NULL)
+	{
 
 	printf("How many %s do you want for this project: ",
-			(*projectName)->data->name);
+			current->data.name);
 	scanf("%d", &devNum);
 	printf("BELOW ARE THE CURRENT AVAILABLE OPTIMUM LEVELS\n");
 	printf("----------------------------------------------------------\n");

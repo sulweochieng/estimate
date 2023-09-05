@@ -3,7 +3,7 @@
 #include "../headers/types.h"
 
 /**
- * node_cost_update - computes total list cost.
+ * node_cost_update - computes total project cost.
  * Description: traverses the parsed lninked list computing cost per every
  * available node available in the linked list, at the end, updates the overall
  * project cost.
@@ -12,17 +12,17 @@
  * @projectCost: the overall project cost to be updated once all the
  * computations have been completed.
  */
-void node_cost_update(node *project, ratio *ratioS, double *projectCost)
+void node_cost_update(node **project, ratio *ratioS, double *projectCost)
 {
-	node *temp = project;
+	node *temp = *project;
 	double nodeCost, totalNodeCost = 0.0;
 
 	while (temp != NULL)
 	{
 		nodeCost = ((ratioS->a) *
-				(temp->data->salaryLevels[0].salary)) +
-			((ratioS->b) * (temp->data->salaryLevels[1].salary)) +
-			((ratioS->c) * (temp->data->salaryLevels[2].salary));
+				(temp->data.salaryLevels[0].salary)) +
+			((ratioS->b) * (temp->data.salaryLevels[1].salary)) +
+			((ratioS->c) * (temp->data.salaryLevels[2].salary));
 		totalNodeCost += nodeCost;
 		temp = temp->pointerNext;
 	}

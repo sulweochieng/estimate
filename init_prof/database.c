@@ -8,7 +8,7 @@
  * if the list exist, the function inserts the new node data unto the list.
  * @head: the list to initialise.
  */
-void create_list(node **head)
+void create_database(node **head)
 {
 	profession *newProf = NULL;
 	int choice;

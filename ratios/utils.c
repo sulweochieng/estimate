@@ -1,6 +1,7 @@
 #include "../headers/main.h"
 #include "../headers/types.h"
 #include "../headers/fprtyps.h"
+#include <time.h>
 /**
  * generate_ratio_list - generates all possible ratios for computing the
  * estimate costs.
@@ -26,4 +27,45 @@ void generate_ratio_list(int n, ratio *ratiosList, unsigned long int *count)
 		}
 	}
 	printf("%lu POSIBLE RATIOS\n", *count);
+}
+
+/**
+ * clearScreen - Check the platform and use the appropriate clear command.
+ */
+void clearScreen()
+{
+	#ifdef _WIN32
+		system("cls");
+	#else
+		system("clear");
+	#endif
+}
+
+/**
+ * salut - welcomes the user depending on their local time.
+ */
+void salut(void)
+{
+	time_t rawtime;
+	struct tm *timeinfo;
+	char *username = NULL;
+	const char *greeting;
+	int hour;
+
+	username = getenv("USER");
+	if (!username)
+		username = getenv("USERNAME");
+
+	time(&rawtime);
+	timeinfo = localtime(&rawtime);
+	hour = timeinfo->tm_hour;
+
+	if (hour < 12)
+		greeting = "Good morning";
+	else if (hour < 18)
+		greeting = "Good afternoon";
+	else
+		greeting = "Good evening";
+
+	printf("\n%s, %s!\n", greeting, username);
 }

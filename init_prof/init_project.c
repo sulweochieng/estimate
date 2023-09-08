@@ -8,11 +8,15 @@
  * list from the list database.
  * @database: the database to select the node from.
  * @project: the project to create.
+ * @projectCost: computes project cost on every database entry.
  */
-void create_project(node **database, node **project)
+void create_project(node **database, proj **project, double *projectCost, int
+		*devNum)
 {
-	node *selectedNode = *database, *projectNode = NULL;
-	int index, tracker = 0, choice;
+	clearScreen();
+	node *selectedNode = *database;
+	proj *projectNode = NULL;
+	int index, choice, tracker = 0;
 
 	do {
 		display_db(database);
@@ -20,35 +24,32 @@ void create_project(node **database, node **project)
 		scanf("%d", &index);
 		while (selectedNode != NULL)
 		{
-			tracker++;
+			++tracker;
 			if (tracker == index)
 				break;
 			selectedNode = selectedNode->pointerNext;
 		}
 		if (selectedNode != NULL)
 		{
-			if (!is_node_in_project(*project, selectedNode))
+			if (!(is_node_in_project(*project, selectedNode)))
 			{
-				projectNode = malloc(sizeof(node));
+				projectNode = malloc(sizeof(proj));
 				if (!projectNode)
-				{
-					printf("Failed to allocate memory\n");
 					exit(EXIT_FAILURE);
-				}
-				projectNode->data = selectedNode->data;
+				projectNode->info = selectedNode->data;
+				projectNode->computed = FALSE;
 				projectNode->pointerNext = *project;
 				*project = projectNode;
+				project_cost_calc(project, projectCost, devNum);
 				tracker = 0;
+				printf("%s SUCCESSFULLY ADDED\n", (*project)->info.name);
 			}
 			else
 			{
-				printf("%s EXISTS IN PROJECT\n",
-						selectedNode->data.name);
+				printf("%s EXISTS IN PROJECT\n", selectedNode->data.name);
 			}
 		}
-		printf("DO YOU WANT TO ADD TO PROJECT\n");
-		printf("[1]. Yes\n[2]. No\n");
-		printf("ENTER CHOICE: ");
+		printf("[1]. ADD TO PROJECT\n[2]. BACK TO MENU\nENTER INDEX:");
 		scanf("%d", &choice);
 	} while (choice != 2);
 }
@@ -56,25 +57,23 @@ void create_project(node **database, node **project)
  * display_project - display members available in a project
  * @project: the project to be displayed.
  */
-void display_project(node **project)
+void display_project(proj **project)
 {
-	node *temp = *project;
-	int index = OFFONE;
+	clearScreen();
+	proj *temp = *project;
+	int index = OFFONE, i;
 
 	if (temp == NULL)
 	{
-		printf("Project list still empty\n");
+		printf("PROJECT LIST IS STILL EMPTY\n");
 	}
 	else
 	{
 		printf("--------------------------------------------------\n");
-		printf("The prject list has the following entries\n");
+		printf("PROJECT DATABASE ENTRIE(S)\n");
 		printf("--------------------------------------------------\n");
 		while (temp != NULL)
-		{
-			printf("[%d]. %s\n", index++, temp->data.name);
-			temp = temp->pointerNext;
-		}
+			printf("[%d]. %s\n", index++, temp->info.name);
 		printf("--------------------------------------------------\n");
 	}
 }
@@ -83,22 +82,25 @@ void display_project(node **project)
 /**
  * rm_from_project - removes a node from project list.
  * @project: the project to remove from.
+ * @projectCost: needs to be updated on every deletion.
  */
-void rm_from_project(node **project)
+void rm_from_project(proj **project, double *projectCost)
 {
-	node *prev = NULL, *current = *project;
-	int index, nodeIndex;
+	clearScreen();
+	proj *prev = NULL, *current = *project;
+	int index, nodeIndex, choice;
 
 	if (*project == NULL)
 	{
-		printf("PROJECT LIST STILL EMPTY. NOTHING TO DELETE\n");
+		printf("Nothing to DELETE!! Project database is EMPTY!!\n");
 		return;
 	}
 	display_project(project);
-	printf("Which Professional do you want to delete from project: ");
+	printf("ENTER CORRESPONDING INDEX TO DELETE: ");
 	scanf("%d", &index);
 	if (index == OFFONE)
 	{
+		*projectCost = project_cost_reduce(&current, projectCost);
 		*project = current->pointerNext;
 		free(current);
 		printf("Profession removed successfully\n");
@@ -113,15 +115,17 @@ void rm_from_project(node **project)
 			current = current->pointerNext;
 			nodeIndex++;
 		}
+		*projectCost = project_cost_reduce(&current, projectCost);
 		prev->pointerNext = current->pointerNext;
 		free(current);
 		current = NULL;
 		printf("Profession removed successfully\n");
 	}
-	printf("Do you want to remove another profession? (1: Yes, 2: No): ");
-	scanf("%d", &index);
-	if (index == 1)
-		rm_from_project(project);
+	printf("DO YOU WANT TO REMOVE ANOTHER PROFESSION\n1: YES\n2: BACK\n");
+	printf("OPTION: ");
+	scanf("%d", &choice);
+	if (choice == OFFONE)
+		rm_from_project(project, projectCost);
 }
 
 /**
@@ -130,11 +134,11 @@ void rm_from_project(node **project)
  * @selectedNode: the new node to be added.
  * Return: returns true if it exist, or false if it deosn't exist.
  */
-bool is_node_in_project(node *project, node *selectedNode)
+bool is_node_in_project(proj *project, node *selectedNode)
 {
 	while (project != NULL)
 	{
-		if (strcmp(project->data.name, selectedNode->data.name) == 0)
+		if (strcmp(project->info.name, selectedNode->data.name) == 0)
 		{
 			return (true);
 		}

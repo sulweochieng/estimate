@@ -3,45 +3,129 @@
 #include "../headers/types.h"
 
 /**
- * projectCostCalc - calculates the total project cost.
+ * project_cost_calc - calculates the total project cost.
  * @projectName: type node pointing to selcted items from type node devList.
  * @projectCost: variable holding the total project cost.
+ * @profNum: number of professionals involved in the project.
  */
-void project_cost_calc(node **projectName, double *projectCost)
+void project_cost_calc(proj **projectName, double *projectCost, int *profNum)
 {
-	void (*ratio_func[COST_OPTIONS])(int, ratio *) = {optimum_a, optimum_b,
+	clearScreen();
+	void (*ratio_func[COSTOPTIONS])(int, ratio *) = {optimum_a, optimum_b,
 		optimum_c, equilibrium, equilibrium_a, equilibrium_b,
 		equilibrium_c};
 	opt optInfo;
 	ratio ratioS;
 	int j, devNum, levIndex;
-	node *current = *projectName;
+	proj *current = *projectName;
+	double nodeCost = 0.0;
 
 	while (current != NULL)
 	{
+		if (current->computed == FALSE)
+		{
+			printf("How many %s do you want for this project: ",
+					current->info.name);
+			scanf("%d", &devNum);
+			current->num = devNum;
+			*profNum = prof_num(projectName, profNum, devNum);
+			printf("BELOW ARE THE CURRENT AVAILABLE OPTIMUM LEVELS\n");
+			printf("----------------------------------------------------------\n");
+			init_optimization_info(&optInfo);
+			for (j = 0; j < OPTLEVELS; j++)
+				printf("\n[%d]. %s\n", j + 1, optInfo.levelName[j]);
+			printf("----------------------------------------------------------\n");
+			printf("PLEASE CHOOSE A LEVEL BY ENTERING A CORRESPONDING INDEX: ");
+			scanf("%d", &levIndex);
+			current->optLevel = strdup(optInfo.levelName[levIndex -
+					OFFONE]);
+			printf("YOU'VE SELECTED %s\nDESCRIPTION: %s\n",
+					optInfo.levelName[levIndex - OFFONE],
+					optInfo.levelIntro[levIndex - OFFONE]);
+			printf("----------------------------------------------------------\n");
+			if (levIndex > OPTIMUM)
+			{
+				equillibrium_compute(&ratioS, &devNum,
+						projectName, &levIndex);
+				current->nodeRatio = ratioS;
+				current->nodeCost =
+					node_cost_update(projectName, &ratioS);
+			}
+			else
+			{
+				ratio_func[levIndex - OFFONE](devNum, &ratioS);
+				current->nodeRatio = ratioS;
+				current->nodeCost =
+					node_cost_update(projectName, &ratioS);
+			}
+		}
+		*projectCost = project_costing(&current, projectCost);
+		current->computed = TRUE;
+		current = current->pointerNext;
+	}
+}
 
-	printf("How many %s do you want for this project: ",
-			current->data.name);
-	scanf("%d", &devNum);
-	printf("BELOW ARE THE CURRENT AVAILABLE OPTIMUM LEVELS\n");
-	printf("----------------------------------------------------------\n");
-	init_optimization_info(&optInfo);
-	for (j = 0; j < OPTLEVELS; j++)
-		printf("\n[%d]. %s\n", j + 1, optInfo.levelName[j]);
-	printf("----------------------------------------------------------\n");
-	printf("\nPLEASE CHOOSE A LEVEL BY ENTERING A CORRESPONDING INDEX: ");
-	scanf("%d", &levIndex);
-	printf("You've slected %s\n", optInfo.levelName[levIndex - 1]);
-	printf("%s\n", optInfo.levelIntro[levIndex - 1]);
-	printf("----------------------------------------------------------\n");
-	if (levIndex > 3)
+/**
+ * project_cost_reduce - reduces the overral project cost on every node
+ * deletion.
+ * @projectNode: the specific node/item we are to delete.
+ * @projectCost: the cost to be reduced.
+ * Return: updated project cost.
+ */
+double project_cost_reduce(proj **projectNode, double *projectCost)
+{
+	double newCost;
+
+	if (*projectNode != NULL)
+		newCost = *projectCost - (*projectNode)->nodeCost;
+	return (newCost);
+}
+
+/**
+ * project_costing - produces/computes project cost.
+ * @project: the project we are estimating its cost.
+ * @projectCost: cost of the project to be computed.
+ * Return: the new overall cost of the project.
+ */
+double project_costing(proj **project, double *projectCost)
+{
+	proj *current = *project;
+
+	if (current == NULL)
 	{
-		equillibrium_compute(&ratioS, devNum, projectName, projectCost,
-				levIndex);
+		*projectCost = 0.0;
+		return (*projectCost);
 	}
-	else
+	if (current->computed == FALSE)
 	{
-		ratio_func[levIndex - 1](devNum, &ratioS);
-		node_cost_update(projectName, &ratioS, projectCost);
+		clear_input_buffer();
+		*projectCost += current->nodeCost;
 	}
+	return (*projectCost);
+}
+
+/**
+ * prof_num - computes the number of professionals involved in a project.
+ * Description: NOTE we are not counting the number of nodes, but computing
+ * total number of involved professionals, dependent on the optimal level used.
+ * @project: the project list to compute its total members.
+ * @profNum: number of professionals to be updates.
+ * @nodNum: number of a specific node/professional involved in the project.
+ * Return: returns updated number of professionals involved in the project.
+ */
+int prof_num(proj **project, int *profNum, int nodNum)
+{
+	proj *current = *project;
+
+	if (current == NULL)
+	{
+		*profNum = 0;
+		return (*profNum);
+	}
+	if (current->computed == FALSE)
+	{
+		clear_input_buffer();
+		*profNum += nodNum;
+	}
+	return (*profNum);
 }

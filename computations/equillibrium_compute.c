@@ -10,28 +10,26 @@
  * purposes.
  * @devNum: the number of developers to be involved in the project.
  * @projectName: project parsed for computation.
- * @projectCost: variable to store total cost of project after computation.
  * @levelIndex: the optimal level index required for the project.
  */
-void equillibrium_compute(ratio *ratioS, int devNum, node *projectName, double
-		*projectCost, int levelIndex)
+void equillibrium_compute(ratio *ratioS, int *devNum, proj **projectName,
+		int *levelIndex)
 {
-	void (*ratio_func[COST_OPTIONS])(int, ratio *) = {optimum_a, optimum_b,
+	void (*ratio_func[COSTOPTIONS])(int, ratio *) = {optimum_a, optimum_b,
 		optimum_c, equilibrium, equilibrium_a, equilibrium_b,
 		equilibrium_c};
 	devLevels level;
 	int eqChoice;
 
-	if (!(devNum % SALARYLEVELS == 0))
+	if (!(*devNum % SALARYLEVELS == 0))
 	{
 		print_levels(&level);
+		printf("ENTER INDEX: ");
 		scanf("%d", &eqChoice);
-		ratio_func[eqChoice + 3](devNum, ratioS);
-		node_cost_update(projectName, ratioS, projectCost);
+		ratio_func[SALARYLEVELS + eqChoice](*devNum, ratioS);
 	}
 	else
 	{
-		ratio_func[levelIndex - 1](devNum, ratioS);
-		node_cost_update(projectName, ratioS, projectCost);
+		ratio_func[*levelIndex - OFFONE](*devNum, ratioS);
 	}
 }

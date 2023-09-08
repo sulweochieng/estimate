@@ -8,36 +8,60 @@
  */
 int main(void)
 {
-	int choice;
+	clearScreen();
+	int action, i, devNum = 0;
 	double projectCost = 0.0;
+	node *database = NULL;
+	proj *project = NULL;
+	char *menu[COSTOPTIONS] = {"CREATE/UPDATE DATABASE",
+		"CREATE/UPDATE PROJECT", "DELETE ITEM FROM PROJECT",
+		"GENERATE PROJECT DETAILS", "DISPLAY DATABASE",
+		"DELETE FROM DB", "EXIT"};
 
-	printf("\nWELCOME TO ESTIMATOR. A SIMPLE ESTIMATION TOOL\n");
+	salut();
+	printf("\n\tWELCOME TO ESTIMATOR. A SIMPLE ESTIMATION TOOL\n");
 	printf("===========================================================\n");
 	do {
-		printf("PLEASE CHOOSE AN INDEX CORRESPONDING TO AN ACTION\n");
-		1. remove item from list.
-			a. reduce project
-		2. print all names present in project.
-		3. Prevent double entry of node item to list
-		4. Compute project cost
-		5. start new project
-		5. exit function
-		6. adjecent !> next
-		scanf("%d", &choice);
-		switch (choice)
+		printf("--------------------------------------------------\n");
+		printf("        ESTIMATE MENU\n");
+		printf("--------------------------------------------------\n");
+		for (i = FIRSTITEM; i < COSTOPTIONS; i++)
+			printf("[%d]. %s\n", i + OFFONE, menu[i]);
+		printf("==================================================\n");
+		printf("PLEASE ENTER A CORRESPONDING INDEX TO AN ACTION: ");
+		scanf("%d", &action);
+		switch (action)
 		{
 			case 1:
-				/*implement logic*/
+				create_database(&database);
 				break;
 			case 2:
-				/*implement logic*/
+				create_project(&database, &project,
+						&projectCost, &devNum);
 				break;
-			default:
-				printf("Invalid choice.\n");
-	} while (choice != value of exit);
+			case 3:
+				rm_from_project(&project, &projectCost);
+				break;
+			case 4:
+				display_project_details(&project, &projectCost,
+						&devNum);
+				break;
+			case 5:
+				display_db(&database);
+				break;
+			case 6:
+				rm_from_db(&database);
+				break;
+			case 7:
+				if (action < 1 || action > 6)
+					printf("WRONG CHOICE! ENTER A VALID ONE\n");
+				break;
+		}
+	} while (action != COSTOPTIONS + OFFONE);
 	printf("===========================================================\n");
-	printf("THANK YOU!");
-	sleep(3);
-	printf("SYSTEM SHUTING DOWN NOW\n");
+	printf("THANK YOU!\n");
+	sleep(1);
+	printf("SYSTEM SHUTING DOWN NOW!\n");
+	sleep(1);
 	return (0);
 }

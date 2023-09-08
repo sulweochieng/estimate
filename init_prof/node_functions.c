@@ -80,12 +80,12 @@ void list_init(node **head, profession *newData)
 
 /**
  * node_count - counts the total number of items of the parsed linked list.
- * @head: the begining of the list to be counted.
- * @counter: tracker of node number per list.
- * Return: number of total number of nodes in the parsed list.
+ * @head: the database to compute its entries.
+ * Return: return the total number of items in the database.
  */
-int *node_count(node **head, int *counter)
+int node_count(node **head)
 {
+	int counter = 0;
 	node *temp = NULL;
 
 	temp = *head;
@@ -97,7 +97,7 @@ int *node_count(node **head, int *counter)
 	while (temp != NULL)
 	{
 		temp = temp->pointerNext;
-		++*counter;
+		++counter;
 	}
 	return (counter);
 }
@@ -112,11 +112,8 @@ void display_db(node **db)
 	int i = OFFONE;
 
 	if (temp == NULL)
-	{
 		printf("The database is empty!!\n");
-		exit(EXIT_SUCCESS);
-	}
-	printf("THE DATABASE ENTRIES\n");
+	printf("\tDATABASE ENTRIES\n");
 	printf("==================================================\n");
 	while (temp != NULL)
 	{
@@ -124,60 +121,4 @@ void display_db(node **db)
 		temp = temp->pointerNext;
 		++i;
 	}
-}
-
-
-
-int main(void)
-{
-	int counter = 0;
-	int projectEntries = 0;
-	node *head = NULL, *project = NULL;
-	int choice, i;
-	char *menu[10] = {
-		"CREATE/UPDATE DATABASE", "CREATE/UPDATE PROJECT",
-		"DELETE ITEM FROM PROJECT", "DISPLAY PROJECT",
-		"DISPLAY DATABASE", "EXIT"
-	};
-
-	printf("==========================================================\n");
-	printf("WELCOME TO ESTIMATE\n");
-	do {
-		printf("--------------------------------------------------\n");
-		printf("ESTIMATE MENU\n");
-		for (i = FIRSTITEM; i < 6; i++)
-			printf("[%d]. %s\n", i + 1, menu[i]);
-		printf("--------------------------------------------------\n");
-		printf("ENTER AN INDEX TO CONTINUE: ");
-		scanf("%d", &choice);
-		switch (choice)
-		{
-			case 1:
-				create_database(&head);
-				break;
-			case 2:
-				create_project(&head, &project);
-				break;
-			case 3:
-				rm_from_project(&project);
-				break;
-			case 4:
-				display_project(&project);
-				break;
-			case 5:
-				display_db(&head);
-				break;
-			case 6:
-				break;
-			default:
-				if (choice < 1 || choice > 6)
-				{
-					printf("WRONG CHOICE! ENTER A VALID ONE\n");
-					break;
-				}
-		}
-	} while (choice != 6);
-	printf("THANK YOU! BYE\n");
-	printf("==========================================================\n");
-	return (0);
 }

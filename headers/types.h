@@ -2,7 +2,23 @@
 #define TYPES_H
 
 /**
- * struct salaries - outlines salaries for the availbale proficiency levels.
+ * struct Ratio - a type that defines members of the ratio to be computed.
+ * @a: first member.
+ *	Represents the Senior level of expertise.
+ * @b: second member.
+ *	Represents the Mid-level level of expertise.
+ * @c: third member.
+ *	Represents the Junior level of expertise.
+ */
+typedef struct Ratio
+{
+	int a;
+	int b;
+	int c;
+} ratio;
+ 	
+/**
+ * struct salaries - outlines salaries for the available proficiency levels.
  * @senior: senior developer's salary.
  * @midLevel: mid-level developer's salary.
  * @junior: junior developer's salary.
@@ -64,37 +80,31 @@ typedef struct node
 
 /**
  * struct Project - an identifier for a project.
- * Description: the project type holds *head of different professions needed
- * in a specific project descritption. It will also have a name member which
- * will be used to identify the soecific project the client/user is working on.
- * @heads: an array of heads, typically a classification of various related
- * professions/professionals.
- *	head represents a whole classification of closely related professions.
- *	We can also refer to them as fields.
- * @name: to indicate the name of the project the user is working on. Specific
- * as posible.
+ * Description: the project type differs from the node type by the introduction
+ * of the computed member.
+ * @info: holds the usual professional type info to be included in the project,
+ * all copied from the type node, of the database.
+ * @computed: set to false initially, to indicate that every newly added
+ * profeesion type added to the list is not yet computed. This keeps track of
+ * every computed member so as to prevent multiple computations in between
+ * function calls.
+ * @nodeRatio: tracks the ration to which nodecost was achieved.
+ * @num: the number of ->info.name needed for the project.
+ * @nodeCost: cost computed by referencing optLevel and nodeRatio.
+ * @optLevel: Describes the optimization level for the ->info.name needed for
+ * this particular project.
+ * @pointerNext: points to the next node in the linked list.
  */
 typedef struct Project
 {
-	char *name;
-	struct node *heads[3];
-} project;
-
-/**
- * struct Ratio - a type that defines members of the ratio to be computed.
- * @a: first member.
- *	Represents the Senior level of expertise.
- * @b: second member.
- *	Represents the Mid-level level of expertise.
- * @c: third member.
- *	Represents the Junior level of expertise.
- */
-typedef struct Ratio
-{
-	int a;
-	int b;
-	int c;
-} ratio;
+	profession info;
+	int computed;
+	ratio nodeRatio;
+	int num;
+	double nodeCost;
+	char *optLevel;
+	struct Project *pointerNext;
+} proj;
 
 /**
  * struct Optimization - a type that gives descriptions to each optimazation

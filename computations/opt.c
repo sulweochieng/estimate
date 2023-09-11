@@ -13,15 +13,38 @@ void init_optimization_info(opt *info)
 	info->levelName[2] = "BASIC";
 	info->levelName[3] = "EQUILLIBRIUM";
 
-	info->levelIntro[0] = "Highest level of optimization";
-	info->levelIntro[1] = "Inter-mediate level of optimization";
-	info->levelIntro[2] = "Basic level of optimization";
-	info->levelIntro[3] = "Balanced level of optimization";
+	info->levelIntro[0] =
+		"Highest level of optimization, "
+		"with number of Senior level professionals at highest.";
+	info->levelIntro[1] =
+		"Inter-mediate level of optimization, "
+		"with number of Mid-level professionals at highest.";
+	info->levelIntro[2] =
+		"Basic level of optimization, "
+		"with number of Junior level professionals at highest.";
+	info->levelIntro[3] =
+		"Balanced level of optimization, "
+		"Aims to distribute the professional levels equally.";
 
-	info->levelDescp[0] = "The level provides a ratio wherein the value for the Senior Dev is the highest. Advised for Projects HIGHEST level of professionalism is required. It will involve the highest cost.";
-	info->levelDescp[1] = "The level provides a ratio where the the value for the Mid-Level Dev is the highest. Advised for projects where time is of essence.";
-	info->levelDescp[2] = "The level provides a ratio where the value for the Junior Dev is the highest. Advised for projects where cost of production is of esence.";
-	info->levelDescp[3] = "Advised for projects where professionals > 10.The level provides a ratio wherein the values for Senior, Mid-level, and Junior Devs are equal or close to equal.";
+	info->levelDescp[0] =
+		"The level provides a ratio wherein the value for the Senior "
+		"professionals is the highest."
+		"Advised for Projects where number needed is below 5."
+		"It might involve/produce the highest project cost.";
+	info->levelDescp[1] =
+		"The level provides a ratio where the  value/number of the "
+		"Mid-Level proeffionals is the highest. "
+		"Advised for projects where time is of essence, "
+		"and the number needed is below 5.";
+	info->levelDescp[2] =
+		"The level provides a ratio where the value for the Junior "
+		"professionals is the highest. "
+		"Advised for projects where cost of production is of esence, "
+		"and the number of professionals needed is below 5";
+	info->levelDescp[3] =
+		"Ideal for every project.The level provides a ratio wherein "
+		"the values for Senior, Mid-level, and Junior professionals "
+		"are equal or close to  being equal: BALANCED.";
 }
 
 /**

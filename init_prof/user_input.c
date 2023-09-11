@@ -36,7 +36,7 @@ char *user_input_string(void)
 		printf("Failed to allocate memory!\n");
 		exit(EXIT_FAILURE);
 	}
-
+	printf("ENTER A VALID FIELD TO ADD TO THE DATABASE: ");
 	while ((c = getchar()) != EOF && c != '\n')
 	{
 		buffer[i] = c;
@@ -53,6 +53,12 @@ char *user_input_string(void)
 		}
 	}
 	buffer[i] = '\0';
+	if (string_input_check(buffer) == 1)
+	{
+		free(buffer);
+		user_input_string();
+	}
+	to_upper(buffer);
 	return (buffer);
 }
 
@@ -66,7 +72,16 @@ int string_input_check(char *buffer)
 	int i, len;
 
 	len = strlen(buffer);
-
+	if (len == 0)
+		return (1);
+	if (isdigit(buffer[0]))
+		return (1);
+	for (i = FIRSTITEM; i < len; i++)
+	{
+		if (!isalpha(buffer[i]) && !isspace(buffer[i]))
+			return (1);
+	}
+	return (0);
 }
 
 /**
@@ -79,8 +94,38 @@ char *to_upper(char *buffer)
 	int i;
 	char *temp = NULL;
 
-	for (i = 0; buffer[i] != NULL; i++)
+	temp =  malloc(strlen(buffer) + OFFONE);
+	if (!temp)
+	{
+		printf("Failed to allocate memory\n");
+		exit(EXIT_FAILURE);
+	}
+
+	for (i = FIRSTITEM; buffer[i] != '\0'; i++)
 		temp[i] = toupper(buffer[i]);
 	temp[i] = '\0';
 	return (temp);
+}
+
+/**
+ * db_entry_check - checks if the user input already exists in the database.
+ * Description: if the new entry already exists, the user will be notified, and
+ * prompted to re-enter a new entry.
+ * @db: the database to which we are adding to, and as well checking for double
+ * entry.
+ * @entry: the new profession to be added into the database.
+ * Return: returns 0 if there is no similar entry into the database, and 1 if
+ * entry exists.
+ */
+int db_entry_check(node **db, char *entry)
+{
+	node *temp = *db;
+
+	while (temp != NULL)
+	{
+		if (strcmp(to_upper(entry), temp->data.name) == 0)
+			return (1);
+		temp = temp->pointerNext;
+	}
+	return (0);
 }

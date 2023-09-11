@@ -26,7 +26,6 @@ profession *create_field(void)
 		free(newfield);
 		return (NULL);
 	}
-	printf("ENTER THE FIELD TO ADD: ");
 	clear_input_buffer();
 	newfield->name = user_input_string();
 	for (i = FIRSTITEM; i < SALARYLEVELS; i++)

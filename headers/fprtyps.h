@@ -8,6 +8,7 @@ void clearScreen(void);
 void create_database(node **head);
 void create_project(node **database, proj **project, double *projectCost, int
 		*devNum);
+int db_entry_check(node **db, char *entry);
 void display_opt_info(opt *optInfo, int *index);
 void display_project(proj **project);
 void display_project_details(proj **project, double *projectCost, int *devNum);
@@ -24,6 +25,8 @@ void init_levels(devLevels *levels);
 void init_optimization_info(opt *info);
 bool is_node_in_project(proj *project, node *selectedNode);
 void list_init(node **head, profession *newData);
+void nod_assign(proj **project, node **selectedNode, proj **projectNode, double
+		*projectCost, int *devNum, int *tracker);
 int node_count(node **head);
 double node_cost_update(proj **projectNode, ratio *ratioS);
 void optimum_a(int n, ratio *choice);
@@ -38,6 +41,8 @@ double project_cost_reduce(proj **projectNode, double *projectCost);
 void rm_from_db(node **db);
 void rm_from_project(proj **project, double *projectCost);
 void salut(void);
+int string_input_check(char *buffer);
+char *to_upper(char *buffer);
 void unit_sum(proj **nod, ratio *rat, double *nCost);
 char *user_input_string(void);
 profession *create_field(void);

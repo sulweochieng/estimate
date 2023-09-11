@@ -30,34 +30,51 @@ void create_project(node **database, proj **project, double *projectCost, int
 		scanf("%d", &index);
 		while (selectedNode != NULL)
 		{
-			++tracker;
+			tracker++;
 			if (tracker == index)
 				break;
 			selectedNode = selectedNode->pointerNext;
 		}
 		if (selectedNode != NULL)
 		{
-			if (!(is_node_in_project(*project, selectedNode)))
-			{
-				projectNode = malloc(sizeof(proj));
-				if (!projectNode)
-					exit(EXIT_FAILURE);
-				projectNode->info = selectedNode->data;
-				projectNode->computed = FALSE;
-				projectNode->pointerNext = *project;
-				*project = projectNode;
-				project_cost_calc(project, projectCost, devNum);
-				tracker = 0;
-				printf("%s SUCCESSFULLY ADDED\n", (*project)->info.name);
-			}
-			else
-			{
-				printf("%s EXISTS IN PROJECT\n", selectedNode->data.name);
-			}
+			nod_assign(project, &selectedNode, &projectNode,
+					projectCost, devNum, &tracker);
 		}
 		printf("[1]. ADD TO PROJECT\n[2]. BACK TO MENU\nENTER INDEX:");
 		scanf("%d", &choice);
 	} while (choice != 2);
+}
+
+/**
+ * nod_assign - updates the inticacies of the project node.
+ * @project: the project to add the new node to.
+ * @selectedNode: node from the main database.
+ * @projectNode: the node to update.
+ * @projectCost: updates the overall project cost on very node addition.
+ * @devNum: tracks the total number of professionals added unto the project,
+ * with their ratios.
+ * @tracker: is set back to 0 on every addition to avoid double entry.
+ */
+void nod_assign(proj **project, node **selectedNode, proj **projectNode, double
+		*projectCost, int *devNum, int *tracker)
+{
+	if (!(is_node_in_project(*project, *selectedNode)))
+	{
+		*projectNode = malloc(sizeof(proj));
+		if (!*projectNode)
+			exit(EXIT_FAILURE);
+		(*projectNode)->info = (*selectedNode)->data;
+		(*projectNode)->computed = FALSE;
+		(*projectNode)->pointerNext = *project;
+		*project = *projectNode;
+		project_cost_calc(project, projectCost, devNum);
+		*tracker = 0;
+		printf("%s SUCCESSFULLY ADDED\n", (*project)->info.name);
+	}
+	else
+	{
+		printf("%s EXISTS IN PROJECT\n", (*selectedNode)->data.name);
+	}
 }
 /**
  * display_project - display members available in a project

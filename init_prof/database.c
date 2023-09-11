@@ -16,10 +16,15 @@ void create_database(node **head)
 
 	do {
 		newProf = create_field();
+		if (db_entry_check(head, newProf->name) == 1)
+		{
+			free(newProf->name);
+			free(newProf);
+			create_database(head);
+		}
 		list_init(head, newProf);
-		printf("DO YOU WANT TO ADD TO THE DATABASE?\n");
 		printf("--------------------------------------------------\n");
-		printf("[1]. YES\n[2]. NOPE. TAKE ME BACK TO MAIN MENU\n");
+		printf("[1].ADD TO DATABASE\n[2].BACK TO MAIN MENU\n");
 		printf("--------------------------------------------------\n");
 		printf("ENTER A CORRESONDING INDEX: ");
 		scanf("%d", &choice);

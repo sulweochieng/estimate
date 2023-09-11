@@ -53,11 +53,13 @@ int main(void)
 				rm_from_db(&database);
 				break;
 			case 7:
+				break;
+			default:
 				if (action < 1 || action > 6)
-					printf("WRONG CHOICE! ENTER A VALID ONE\n");
+					printf("PLEASE ENTER A VALID INDEX\n");
 				break;
 		}
-	} while (action != COSTOPTIONS + OFFONE);
+	} while (action != 7);
 	printf("===========================================================\n");
 	printf("THANK YOU!\n");
 	sleep(1);

@@ -1,5 +1,6 @@
 #include "../headers/main.h"
 #include "../headers/types.h"
+#include "../headers/fprtyps.h"
 
 /**
  * init_optimization_info - initiates the optimization infomation.
@@ -21,6 +22,25 @@ void init_optimization_info(opt *info)
 	info->levelDescp[1] = "The level provides a ratio where the the value for the Mid-Level Dev is the highest. Advised for projects where time is of essence.";
 	info->levelDescp[2] = "The level provides a ratio where the value for the Junior Dev is the highest. Advised for projects where cost of production is of esence.";
 	info->levelDescp[3] = "Advised for projects where professionals > 10.The level provides a ratio wherein the values for Senior, Mid-level, and Junior Devs are equal or close to equal.";
+}
+
+/**
+ * display_opt_info - displays details of optimization level
+ * @optInfo: the optimization level to display information about.
+ * @index: the index corresponding to the optimiztion level to be displayed.
+ */
+void display_opt_info(opt *optInfo, int *index)
+{
+	clearScreen();
+	int choice, tracker;
+
+	printf("==========================================================\n");
+	printf("LEVEL: %s\n", optInfo->levelName[*index]);
+	printf("----------------------------------------------------------\n");
+	printf("INTRODUCTION:\n%s\n", optInfo->levelIntro[*index]);
+	printf("----------------------------------------------------------\n");
+	printf("DESCRIPTION:\n%s\n", optInfo->levelDescp[*index]);
+	printf("==========================================================\n");
 }
 
 /**

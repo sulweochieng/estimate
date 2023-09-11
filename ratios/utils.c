@@ -32,7 +32,7 @@ void generate_ratio_list(int n, ratio *ratiosList, unsigned long int *count)
 /**
  * clearScreen - Check the platform and use the appropriate clear command.
  */
-void clearScreen()
+void clearScreen(void)
 {
 	#ifdef _WIN32
 		system("cls");
@@ -67,5 +67,6 @@ void salut(void)
 	else
 		greeting = "Good evening";
 
-	printf("\n%s, %s!\n", greeting, username);
+	printf("\n%s %s!\n", greeting, username);
 }
+

@@ -55,3 +55,32 @@ char *user_input_string(void)
 	buffer[i] = '\0';
 	return (buffer);
 }
+
+/**
+ * string_input_check - checks if the use has inputed a valid string.
+ * @buffer: the string input to validate.
+ * Return: on success returns 0, on failure, returns 1.
+ */
+int string_input_check(char *buffer)
+{
+	int i, len;
+
+	len = strlen(buffer);
+
+}
+
+/**
+ * to_upper - captilizes a string passed to it.
+ * @buffer: the string to capitalise.
+ * Return: returns the new capitalised string.
+ */
+char *to_upper(char *buffer)
+{
+	int i;
+	char *temp = NULL;
+
+	for (i = 0; buffer[i] != NULL; i++)
+		temp[i] = toupper(buffer[i]);
+	temp[i] = '\0';
+	return (temp);
+}

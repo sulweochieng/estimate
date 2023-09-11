@@ -13,18 +13,21 @@ double node_cost_update(proj **projectNode, ratio *ratioS)
 	double nodeCost = 0.0;
 
 	if ((*projectNode)->computed == FALSE && (*projectNode)->nodeCost == 0.0)
-	{
-		nodeCost = (((ratioS->a) *
-					((*projectNode)->info.salaryLevels[2].salary))
-				 +
-				((ratioS->b) *
-				 ((*projectNode)->info.salaryLevels[1].salary))
-				 +
-				((ratioS->c) *
-				 ((*projectNode)->info.salaryLevels[0].salary)));
-
-	}
+		unit_sum(projectNode, ratioS, &nodeCost);
 	return (nodeCost);
+}
+
+/**
+ * unit_sum - adds up all node member units.
+ * @nod: the specific node to compute the sum.
+ * @rat: the node's ration distribution.
+ * @nCost: the cumulative node cost.
+ */
+void unit_sum(proj **nod, ratio *rat, double *nCost)
+{
+	*nCost = rat->a * (*nod)->info.salaryLevels[2].salary + rat->b *
+		(*nod)->info.salaryLevels[1].salary + rat->c *
+		(*nod)->info.salaryLevels[0].salary;
 }
 
 /**
@@ -44,15 +47,15 @@ void display_project_details(proj **project, double *projectCost, int *devNum)
 	printf("--------------------------------------------------\n");
 	printf("\tPROJECT DETAILED INFORMATION\n");
 	printf("--------------------------------------------------\n");
-	printf("TOTAL PROJECT COST [%.2lf]\nWITH[%d] PROFESSIONALS INVOLVED\n",
+	printf("TOTAL PROJECT COST [%.2lf]\nTOTAL NUMBER OF PROFESSIONALS [%d]\n",
 			*projectCost, *devNum);
 	while (temp != NULL)
 	{
-		printf("--------------------------------------------------\n");
+		printf("==================================================\n");
 		printf("[%d].%s | LEVEL = %s | NUMBER = %d |\n",
 				index++, temp->info.name,
 				temp->optLevel, temp->num);
-		printf("--------------------------------------------------\n");
+		printf("==================================================\n");
 		for (i = 0; i < SALARYLEVELS; i++)
 		{
 			printf("%s %s = %.2lf\n",

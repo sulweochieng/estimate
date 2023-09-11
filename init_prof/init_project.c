@@ -9,6 +9,7 @@
  * @database: the database to select the node from.
  * @project: the project to create.
  * @projectCost: computes project cost on every database entry.
+ * @devNum: tracks number of professionals/node units for the whole project.
  */
 void create_project(node **database, proj **project, double *projectCost, int
 		*devNum)
@@ -18,6 +19,11 @@ void create_project(node **database, proj **project, double *projectCost, int
 	proj *projectNode = NULL;
 	int index, choice, tracker = 0;
 
+	if (!(*database))
+	{
+		printf("DATABASE IS EMPTY\n");
+		return;
+	}
 	do {
 		display_db(database);
 		printf("ENTER A CORRESPONDING INDEX TO ADD TO PROJECT: ");

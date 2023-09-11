@@ -29,20 +29,7 @@ void project_cost_calc(proj **projectName, double *projectCost, int *profNum)
 			scanf("%d", &devNum);
 			current->num = devNum;
 			*profNum = prof_num(projectName, profNum, devNum);
-			printf("BELOW ARE THE CURRENT AVAILABLE OPTIMUM LEVELS\n");
-			printf("----------------------------------------------------------\n");
-			init_optimization_info(&optInfo);
-			for (j = 0; j < OPTLEVELS; j++)
-				printf("\n[%d]. %s\n", j + 1, optInfo.levelName[j]);
-			printf("----------------------------------------------------------\n");
-			printf("PLEASE CHOOSE A LEVEL BY ENTERING A CORRESPONDING INDEX: ");
-			scanf("%d", &levIndex);
-			current->optLevel = strdup(optInfo.levelName[levIndex -
-					OFFONE]);
-			printf("YOU'VE SELECTED %s\nDESCRIPTION: %s\n",
-					optInfo.levelName[levIndex - OFFONE],
-					optInfo.levelIntro[levIndex - OFFONE]);
-			printf("----------------------------------------------------------\n");
+			levIndex = opt_info_set(&current, &optInfo);
 			if (levIndex > OPTIMUM)
 			{
 				equillibrium_compute(&ratioS, &devNum,
@@ -63,6 +50,31 @@ void project_cost_calc(proj **projectName, double *projectCost, int *profNum)
 		current->computed = TRUE;
 		current = current->pointerNext;
 	}
+}
+
+/**
+ * opt_info_set - sets the optimization level needed for a specific profession
+ * needed within the main project.
+ * @projNode: the node/profession which is to be set.
+ * @optInfo: optimaization level descriptions.
+ * Return: returns the level of otimization chosen by the user.
+ */
+int opt_info_set(proj **projNode, opt *optInfo)
+{
+	int levIndex, j;
+
+	printf("BELOW ARE THE CURRENT AVAILABLE OPTIMUM LEVELS\n");
+	printf("----------------------------------------------------------\n");
+	init_optimization_info(optInfo);
+	for (j = 0; j < OPTLEVELS; j++)
+		printf("[%d]. %s\n", j + 1, optInfo->levelName[j]);
+	printf("----------------------------------------------------------\n");
+	printf("PLEASE CHOOSE A LEVEL BY ENTERING A CORRESPONDING INDEX: ");
+	scanf("%d", &levIndex);
+	(*projNode)->optLevel = strdup(optInfo->levelName[levIndex - OFFONE]);
+	printf("----------------------------------------------------------\n");
+
+	return (levIndex);
 }
 
 /**
@@ -109,7 +121,7 @@ double project_costing(proj **project, double *projectCost)
  * Description: NOTE we are not counting the number of nodes, but computing
  * total number of involved professionals, dependent on the optimal level used.
  * @project: the project list to compute its total members.
- * @profNum: number of professionals to be updates.
+ * @profNum: number of professionals to be updated.
  * @nodNum: number of a specific node/professional involved in the project.
  * Return: returns updated number of professionals involved in the project.
  */

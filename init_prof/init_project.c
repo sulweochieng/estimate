@@ -40,9 +40,10 @@ void create_project(node **database, proj **project, double *projectCost, int
 			nod_assign(project, &selectedNode, &projectNode,
 					projectCost, devNum, &tracker);
 		}
-		printf("[1]. ADD TO PROJECT\n[2]. BACK TO MENU\nENTER INDEX:");
+		printf("[1].ADD TO PROJECT\n[2].BACK TO MENU\nENTER INDEX:");
 		scanf("%d", &choice);
 	} while (choice != 2);
+	free(projectNode);
 }
 
 /**

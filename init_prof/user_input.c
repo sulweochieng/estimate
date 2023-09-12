@@ -19,13 +19,14 @@ void clear_input_buffer(void)
 /**
  * user_input_string - a function that reads a string from a user and returns a
  * pointer to the read stream and stores it unto a buffer.
+ * @db: the database to check if entry of same input has been put.
  * Description: this function is designed to read a string from the stdin. The
  *	input might include several spaces. But when the function encounters a
  *	newline charactor or end of file, it returns, indicating the end of
  *	input form the user.
  * Return: returns a pointer to the beginning of the of the read stream.
  */
-char *user_input_string(void)
+char *user_input_string(node **db)
 {
 	int c, i = 0, initialBufferSize = BUFSIZE;
 	char *buffer = NULL;
@@ -56,9 +57,11 @@ char *user_input_string(void)
 	if (string_input_check(buffer) == 1)
 	{
 		free(buffer);
-		user_input_string();
+		buffer = user_input_string(db);
 	}
-	to_upper(buffer);
+	buffer = to_upper(buffer);
+	if (db_entry_check(db, buffer) == 1)
+		user_input_string(db);
 	return (buffer);
 }
 
@@ -123,8 +126,12 @@ int db_entry_check(node **db, char *entry)
 
 	while (temp != NULL)
 	{
-		if (strcmp(to_upper(entry), temp->data.name) == 0)
+		if (strcmp(entry, temp->data.name) == 0)
+		{
+			printf("%s ALREADY IN DATABASE\n", entry);
+			free(entry);
 			return (1);
+		}
 		temp = temp->pointerNext;
 	}
 	return (0);

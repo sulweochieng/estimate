@@ -24,7 +24,7 @@ void project_cost_calc(proj **projectName, double *projectCost, int *profNum)
 	{
 		if (current->computed == FALSE)
 		{
-			printf("How many %s do you want for this project: ",
+			printf("How many %sS do you want for this project: ",
 					current->info.name);
 			scanf("%d", &devNum);
 			current->num = devNum;

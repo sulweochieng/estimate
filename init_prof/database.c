@@ -15,7 +15,7 @@ void create_database(node **head)
 	int choice;
 
 	do {
-		newProf = create_field();
+		newProf = create_field(head);
 		if (db_entry_check(head, newProf->name) == 1)
 		{
 			free(newProf->name);
@@ -29,6 +29,8 @@ void create_database(node **head)
 		printf("ENTER A CORRESONDING INDEX: ");
 		scanf("%d", &choice);
 	} while (choice != 2);
+	free(newProf->name);
+	free(newProf);
 }
 
 /**

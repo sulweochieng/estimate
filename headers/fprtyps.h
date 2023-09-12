@@ -3,6 +3,7 @@
 
 #include "types.h"
 /* This header file contains all function protypes used in this project */
+void choice_check(int *input, int range);
 void clear_input_buffer(void);
 void clearScreen(void);
 void create_database(node **head);
@@ -24,6 +25,7 @@ void generate_ratio_list(int n, ratio *ratiosList, unsigned long int *count);
 void init_levels(devLevels *levels);
 void init_optimization_info(opt *info);
 bool is_node_in_project(proj *project, node *selectedNode);
+void lf_check(double *input);
 void list_init(node **head, profession *newData);
 void nod_assign(proj **project, node **selectedNode, proj **projectNode, double
 		*projectCost, int *devNum, int *tracker);
@@ -44,7 +46,7 @@ void salut(void);
 int string_input_check(char *buffer);
 char *to_upper(char *buffer);
 void unit_sum(proj **nod, ratio *rat, double *nCost);
-char *user_input_string(void);
-profession *create_field(void);
+char *user_input_string(node **db);
+profession *create_field(node **db);
 profession **prof_list(void);
 #endif

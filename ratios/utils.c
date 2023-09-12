@@ -70,3 +70,72 @@ void salut(void)
 	printf("\n%s %s!\n", greeting, username);
 }
 
+/**
+ * choice_check - checks if the user inputs a required index within required
+ * bounds.
+ * @range: the upper and lower limits required for input, incases where choices
+ * are to be made.
+ * Desription: if the input does not not require a range, let's say when a user
+ * is inputting cost/salary, the range is set to 0.
+ * @input: the varibale to store the user input.
+ */		
+void choice_check(int *input, int range) 
+{
+	char inputStr[20];
+	bool validInput = false;
+
+	while (!validInput)
+	{
+        	printf("Enter a valid index: ");
+        	if (scanf("%19s", inputStr) != 1)
+		{
+			printf("Invalid input. Please enter a valid index.\n");
+            		clear_input_buffer();
+		}
+		else
+		{
+			validInput = true;
+			for (int i = 0; inputStr[i] != '\0'; i++)
+			{
+                		if (i == 0 && inputStr[i] == '-')
+				{
+					continue;
+				}
+				if (!isdigit(inputStr[i]))
+				{
+					validInput = false;
+					break;
+				}
+			}
+			if (validInput)
+			{
+				*input = atoi(inputStr);
+				if (*input < 1 || *input > range)
+				{
+					printf("Input out of range. Please enter a valid index.\n");
+					validInput = false;
+				}
+			}
+			if (!validInput)
+			{
+				printf("Invalid input. Please enter a valid index.\n");
+				sleep(1);
+				clear_input_buffer();
+			}
+		}
+	}
+}
+
+/**
+ * lf_check - checks if the user has inputed an actual double.
+ * @input: input container.
+ */
+void lf_check(double *input)
+{
+	if (scanf("%lf", input) == 0)
+	{
+		printf("PLEASE INPUT A VALID AMOUNT\n");
+		sleep(1);
+		return;
+	}
+}

@@ -3,14 +3,15 @@
 #include "../headers/fprtyps.h"
 
 /**
- * create_field - populatesalaryLevelss type Profession with appropriate data
+ * create_field - populatesalaryLevelss type Profession with appropriate data.
+ * @db: the database to check for an entry
  * Description: create_field function is designed to help the user create a new
  *	field under the type Profession. This new field is used within the
  *	system for various computational works; ranging from total project cost
  *	computed from the salary leves of every field used within a project.
  * Return: returns a pointer to the location of the newly created field.
  */
-profession *create_field(void)
+profession *create_field(node **db)
 {
 	int i;
 	double levelSalary;
@@ -27,7 +28,7 @@ profession *create_field(void)
 		return (NULL);
 	}
 	clear_input_buffer();
-	newfield->name = user_input_string();
+	newfield->name = user_input_string(db);
 	for (i = FIRSTITEM; i < SALARYLEVELS; i++)
 	{
 		newfield->salaryLevels[i].level = (levels[i]);

@@ -47,7 +47,7 @@ void display_project_details(proj **project, double *projectCost, int *devNum)
 	printf("--------------------------------------------------\n");
 	printf("\tPROJECT DETAILED INFORMATION\n");
 	printf("--------------------------------------------------\n");
-	printf("TOTAL PROJECT COST [%.2lf]\nTOTAL NUMBER OF PROFESSIONALS [%d]\n",
+	printf("MONTHLY PROJECT COST [%.2lf]\nTOTAL NUMBER OF PROFESSIONALS [%d]\n",
 			*projectCost, *devNum);
 	while (temp != NULL)
 	{

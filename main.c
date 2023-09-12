@@ -28,8 +28,7 @@ int main(void)
 		for (i = FIRSTITEM; i < COSTOPTIONS; i++)
 			printf("[%d]. %s\n", i + OFFONE, menu[i]);
 		printf("==================================================\n");
-		printf("PLEASE ENTER A CORRESPONDING INDEX TO AN ACTION: ");
-		scanf("%d", &action);
+		choice_check(&action, 7);
 		switch (action)
 		{
 			case 1:
@@ -52,12 +51,12 @@ int main(void)
 			case 6:
 				rm_from_db(&database);
 				break;
-			case 7:
-				break;
 			default:
-				if (action < 1 || action > 6)
+				if (action < 0 || action > 7)
+				{
 					printf("PLEASE ENTER A VALID INDEX\n");
-				break;
+					break;
+				}
 		}
 	} while (action != 7);
 	printf("===========================================================\n");

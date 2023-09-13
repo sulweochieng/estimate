@@ -21,6 +21,7 @@ void equilibrium_b(int n, ratio *equilibrium);
 void equilibrium_c(int n, ratio *equilibrium);
 void equillibrium_compute(ratio *ratioS, int *devNum, int *levelIndex);
 void free_list(node *head);
+void free_proj(proj *head);
 void generate_ratio_list(int n, ratio *ratiosList, unsigned long int *count);
 void init_levels(devLevels *levels);
 void init_optimization_info(opt *info);

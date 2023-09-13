@@ -40,13 +40,14 @@ int prof_num(proj **project, int *profNum, int nodNum);
 double project_costing(proj **project, double *projectCost);
 void project_cost_calc(proj **projectName, double *projectCost, int *profNum);
 double project_cost_reduce(proj **projectNode, double *projectCost);
+int proj_count(proj **head);
 void rm_from_db(node **db);
-void rm_from_project(proj **project, double *projectCost);
+void rm_from_project(proj **project, double *projectCost, int *devNum);
 void salut(void);
-int string_input_check(char *buffer);
-char *to_upper(char *buffer);
+int string_input_check( char *buffer);
+void to_upper(char *buffer);
 void unit_sum(proj **nod, ratio *rat, double *nCost);
-char *user_input_string(node **db);
+void user_input_string(node **db, char **buffer);
 profession *create_field(node **db);
 profession **prof_list(void);
 #endif

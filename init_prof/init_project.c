@@ -43,7 +43,6 @@ void create_project(node **database, proj **project, double *projectCost, int
 		printf("[1].ADD TO PROJECT\n[2].BACK TO MENU\nENTER INDEX:");
 		scanf("%d", &choice);
 	} while (choice != 2);
-	free(projectNode);
 }
 
 /**
@@ -97,7 +96,10 @@ void display_project(proj **project)
 		printf("PROJECT DATABASE ENTRIE(S)\n");
 		printf("--------------------------------------------------\n");
 		while (temp != NULL)
-			printf("[%d]. %s\n", index++, temp->info.name);
+		{
+			printf("[%d].%s\n", index++, temp->info.name);
+			temp = temp->pointerNext;
+		}
 		printf("--------------------------------------------------\n");
 	}
 }
@@ -107,8 +109,9 @@ void display_project(proj **project)
  * rm_from_project - removes a node from project list.
  * @project: the project to remove from.
  * @projectCost: needs to be updated on every deletion.
+ * @devNum: total number of developers involved in project.
  */
-void rm_from_project(proj **project, double *projectCost)
+void rm_from_project(proj **project, double *projectCost, int *devNum)
 {
 	clearScreen();
 	proj *prev = NULL, *current = *project;
@@ -125,6 +128,7 @@ void rm_from_project(proj **project, double *projectCost)
 	if (index == OFFONE)
 	{
 		*projectCost = project_cost_reduce(&current, projectCost);
+		*devNum -= current->num;
 		*project = current->pointerNext;
 		free(current);
 		printf("Profession removed successfully\n");
@@ -140,16 +144,15 @@ void rm_from_project(proj **project, double *projectCost)
 			nodeIndex++;
 		}
 		*projectCost = project_cost_reduce(&current, projectCost);
+		*devNum -= current->num;
 		prev->pointerNext = current->pointerNext;
 		free(current);
-		current = NULL;
 		printf("Profession removed successfully\n");
 	}
-	printf("DO YOU WANT TO REMOVE ANOTHER PROFESSION\n1: YES\n2: BACK\n");
-	printf("OPTION: ");
+	printf("REMOVE ANOTHER?\n1: YES\n2: BACK\nOPTION: ");
 	scanf("%d", &choice);
 	if (choice == OFFONE)
-		rm_from_project(project, projectCost);
+		rm_from_project(project, projectCost, devNum);
 }
 
 /**

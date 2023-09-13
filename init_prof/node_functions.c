@@ -28,7 +28,7 @@ profession *create_field(node **db)
 		return (NULL);
 	}
 	clear_input_buffer();
-	newfield->name = user_input_string(db);
+	user_input_string(db, &newfield->name);
 	for (i = FIRSTITEM; i < SALARYLEVELS; i++)
 	{
 		newfield->salaryLevels[i].level = (levels[i]);
@@ -89,15 +89,38 @@ int node_count(node **head)
 	node *temp = NULL;
 
 	temp = *head;
-	if (head == NULL)
+	if (*head == NULL)
 	{
 		printf("The database is empty\n");
-		exit(EXIT_SUCCESS);
+		return (0);
 	}
 	while (temp != NULL)
 	{
 		temp = temp->pointerNext;
 		++counter;
+	}
+	return (counter);
+}
+
+/**
+ * proj_count - counts number of items in a project.
+ * @head: project head node.
+ * Return: number of items in the project.
+ */
+int proj_count(proj **head)
+{
+	int counter = 0;
+	proj *temp = *head;
+
+	if (temp == NULL)
+	{
+		printf("The project list is still empty\n");
+		return (0);
+	}
+	while (temp != NULL)
+	{
+		++counter;
+		temp = temp->pointerNext;
 	}
 	return (counter);
 }
@@ -109,7 +132,7 @@ int node_count(node **head)
 void display_db(node **db)
 {
 	node *temp = *db;
-	int i = OFFONE;
+	int i = OFFONE, j;
 
 	if (temp == NULL)
 		printf("The database is empty!!\n");
@@ -119,6 +142,6 @@ void display_db(node **db)
 	{
 		printf("[%d]. %s\n", i, temp->data.name);
 		temp = temp->pointerNext;
-		++i;
+		i++;
 	}
 }

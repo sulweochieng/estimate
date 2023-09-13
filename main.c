@@ -39,7 +39,7 @@ int main(void)
 						&projectCost, &devNum);
 				break;
 			case 3:
-				rm_from_project(&project, &projectCost);
+				rm_from_project(&project, &projectCost, &devNum);
 				break;
 			case 4:
 				display_project_details(&project, &projectCost,

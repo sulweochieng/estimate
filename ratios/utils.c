@@ -78,29 +78,25 @@ void salut(void)
  * Desription: if the input does not not require a range, let's say when a user
  * is inputting cost/salary, the range is set to 0.
  * @input: the varibale to store the user input.
- */		
-void choice_check(int *input, int range) 
+ */
+void choice_check(int *input, int range)
 {
 	char inputStr[20];
 	bool validInput = false;
 
 	while (!validInput)
 	{
-        	printf("Enter a valid index: ");
-        	if (scanf("%19s", inputStr) != 1)
+		printf("Enter a valid index: ");
+		if (scanf("%19s", inputStr) != 1)
 		{
 			printf("Invalid input. Please enter a valid index.\n");
-            		clear_input_buffer();
+			clear_input_buffer();
 		}
 		else
 		{
 			validInput = true;
 			for (int i = 0; inputStr[i] != '\0'; i++)
 			{
-                		if (i == 0 && inputStr[i] == '-')
-				{
-					continue;
-				}
 				if (!isdigit(inputStr[i]))
 				{
 					validInput = false;
@@ -132,10 +128,14 @@ void choice_check(int *input, int range)
  */
 void lf_check(double *input)
 {
-	if (scanf("%lf", input) == 0)
+	double temp;
+
+	if (scanf("%lf", &temp) == 0)
 	{
 		printf("PLEASE INPUT A VALID AMOUNT\n");
 		sleep(1);
+		clear_input_buffer();
 		return;
 	}
+	*input = temp;
 }

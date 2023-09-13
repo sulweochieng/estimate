@@ -110,8 +110,11 @@ void display_project(proj **project)
  * @project: the project to remove from.
  * @projectCost: needs to be updated on every deletion.
  * @devNum: total number of developers involved in project.
+ * @months: project duration.
+ * @tProjectCost: overall project cost.
  */
-void rm_from_project(proj **project, double *projectCost, int *devNum)
+void rm_from_project(proj **project, double *projectCost, int *devNum, int
+		*months, double *tProjectCost)
 {
 	clearScreen();
 	proj *prev = NULL, *current = *project;
@@ -152,7 +155,9 @@ void rm_from_project(proj **project, double *projectCost, int *devNum)
 	printf("REMOVE ANOTHER?\n1: YES\n2: BACK\nOPTION: ");
 	scanf("%d", &choice);
 	if (choice == OFFONE)
-		rm_from_project(project, projectCost, devNum);
+		rm_from_project(project, projectCost, devNum, months,
+				tProjectCost);
+	project_sum(projectCost, tProjectCost, months);
 }
 
 /**

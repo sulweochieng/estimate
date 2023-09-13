@@ -9,8 +9,8 @@
 int main(void)
 {
 	clearScreen();
-	int action, i, devNum = 0;
-	double projectCost = 0.0;
+	int action, i, devNum = 0, months = 0;
+	double projectCost = 0.0, tProjectCost;
 	node *database = NULL;
 	proj *project = NULL;
 	char *menu[COSTOPTIONS] = {"CREATE/UPDATE DATABASE",
@@ -37,13 +37,16 @@ int main(void)
 			case 2:
 				create_project(&database, &project,
 						&projectCost, &devNum);
+				project_sum(&projectCost, &tProjectCost,
+						&months);
 				break;
 			case 3:
-				rm_from_project(&project, &projectCost, &devNum);
+				rm_from_project(&project, &projectCost, &devNum,
+						&months, &tProjectCost);
 				break;
 			case 4:
 				display_project_details(&project, &projectCost,
-						&devNum);
+						&devNum, &months, &tProjectCost);
 				break;
 			case 5:
 				display_db(&database);

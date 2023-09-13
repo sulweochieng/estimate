@@ -35,8 +35,11 @@ void unit_sum(proj **nod, ratio *rat, double *nCost)
  * @project: the project to display information on.
  * @projectCost: the cost of the project.
  * @devNum: the total number of professionals involved in the project.
+ * @months: total project duration.
+ * @tProjectCost: total project cost within the duration.
  */
-void display_project_details(proj **project, double *projectCost, int *devNum)
+void display_project_details(proj **project, double *projectCost, int *devNum,
+		int *months, double *tProjectCost)
 {
 	clearScreen();
 	proj *temp = *project;
@@ -47,12 +50,14 @@ void display_project_details(proj **project, double *projectCost, int *devNum)
 	printf("--------------------------------------------------\n");
 	printf("\tPROJECT DETAILED INFORMATION\n");
 	printf("--------------------------------------------------\n");
+	printf("TOTAL MONTHS  [%d]\nTOTAL PROJECT COST [%.2lf]\n", *months,
+			*tProjectCost);
 	printf("MONTHLY PROJECT COST [%.2lf]\nTOTAL NUMBER OF PROFESSIONALS [%d]\n",
 			*projectCost, *devNum);
 	while (temp != NULL)
 	{
 		printf("==================================================\n");
-		printf("[%d].%s | LEVEL = %s | NUMBER = %d |\n",
+		printf("[%d].%sS | LEVEL = %s | NUMBER = %d |\n",
 				index++, temp->info.name,
 				temp->optLevel, temp->num);
 		printf("==================================================\n");

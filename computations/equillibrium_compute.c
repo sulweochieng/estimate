@@ -33,3 +33,17 @@ void equillibrium_compute(ratio *ratioS, int *devNum, proj **projectName,
 		ratio_func[*levelIndex - OFFONE](*devNum, ratioS);
 	}
 }
+
+/**
+ * project_sum - gives the total project cost relative to months it will run.
+ * @projectCost: the monthly project cost.
+ * @tProjectCost: cost accumalted for n number of months.
+ * @months: the project timeframe.
+ */
+void project_sum(double *projectCost, double *tProjectCost, int *months)
+{
+
+	printf("Enter aprroximate (in months) timeline for the project: ");
+	scanf("%d", months);
+	*tProjectCost = (*projectCost) * (*months);
+}

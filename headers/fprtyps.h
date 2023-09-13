@@ -12,7 +12,8 @@ void create_project(node **database, proj **project, double *projectCost, int
 int db_entry_check(node **db, char *entry);
 void display_opt_info(opt *optInfo, int *index);
 void display_project(proj **project);
-void display_project_details(proj **project, double *projectCost, int *devNum);
+void display_project_details(proj **project, double *projectCost, int *devNum,
+		int *months, double *tProjectCost);
 void display_db(node **db);
 void equilibrium(int n, ratio *equilibrium);
 void equilibrium_a(int n, ratio *equilibrium);
@@ -40,9 +41,11 @@ int prof_num(proj **project, int *profNum, int nodNum);
 double project_costing(proj **project, double *projectCost);
 void project_cost_calc(proj **projectName, double *projectCost, int *profNum);
 double project_cost_reduce(proj **projectNode, double *projectCost);
+void project_sum(double *projectCost,double *tProjectCost, int *months);
 int proj_count(proj **head);
 void rm_from_db(node **db);
-void rm_from_project(proj **project, double *projectCost, int *devNum);
+void rm_from_project(proj **project, double *projectCost, int *devNum, int
+		*months, double *tProjectCost);
 void salut(void);
 int string_input_check( char *buffer);
 void to_upper(char *buffer);

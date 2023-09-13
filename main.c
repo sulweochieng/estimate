@@ -67,5 +67,7 @@ int main(void)
 	sleep(1);
 	printf("SYSTEM SHUTING DOWN NOW!\n");
 	sleep(1);
+	free_proj(poject);
+	free_list(database);
 	return (0);
 }

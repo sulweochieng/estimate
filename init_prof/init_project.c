@@ -14,11 +14,11 @@
 void create_project(node **database, proj **project, double *projectCost, int
 		*devNum)
 {
-	clearScreen();
 	node *selectedNode = *database;
 	proj *projectNode = NULL;
 	int index, choice, tracker = 0;
 
+	clearScreen();
 	if (!(*database))
 	{
 		printf("DATABASE IS EMPTY\n");
@@ -82,10 +82,10 @@ void nod_assign(proj **project, node **selectedNode, proj **projectNode, double
  */
 void display_project(proj **project)
 {
-	clearScreen();
 	proj *temp = *project;
-	int index = OFFONE, i;
+	int index = OFFONE;
 
+	clearScreen();
 	if (temp == NULL)
 	{
 		printf("PROJECT LIST IS STILL EMPTY\n");
@@ -116,10 +116,10 @@ void display_project(proj **project)
 void rm_from_project(proj **project, double *projectCost, int *devNum, int
 		*months, double *tProjectCost)
 {
-	clearScreen();
 	proj *prev = NULL, *current = *project;
 	int index, nodeIndex, choice;
 
+	clearScreen();
 	if (*project == NULL)
 	{
 		printf("Nothing to DELETE!! Project database is EMPTY!!\n");

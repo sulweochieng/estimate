@@ -83,6 +83,7 @@ void choice_check(int *input, int range)
 {
 	char inputStr[20];
 	bool validInput = false;
+	int i;
 
 	while (!validInput)
 	{
@@ -95,7 +96,7 @@ void choice_check(int *input, int range)
 		else
 		{
 			validInput = true;
-			for (int i = 0; inputStr[i] != '\0'; i++)
+			for (i = 0; inputStr[i] != '\0'; i++)
 			{
 				if (!isdigit(inputStr[i]))
 				{

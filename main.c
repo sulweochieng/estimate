@@ -8,7 +8,6 @@
  */
 int main(void)
 {
-	clearScreen();
 	int action, i, devNum = 0, months = 0;
 	double projectCost = 0.0, tProjectCost;
 	node *database = NULL;
@@ -18,6 +17,7 @@ int main(void)
 		"GENERATE PROJECT DETAILS", "DISPLAY DATABASE",
 		"DELETE FROM DB", "EXIT"};
 
+	clearScreen();
 	salut();
 	printf("\n\tWELCOME TO ESTIMATOR. A SIMPLE ESTIMATION TOOL\n");
 	printf("===========================================================\n");

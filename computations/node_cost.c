@@ -41,18 +41,18 @@ void unit_sum(proj **nod, ratio *rat, double *nCost)
 void display_project_details(proj **project, double *projectCost, int *devNum,
 		int *months, double *tProjectCost)
 {
-	clearScreen();
 	proj *temp = *project;
 	int index = OFFONE, i;
 
+	clearScreen();
 	if (!temp)
 		printf("NO ITEM IN PROJECT LIST YET\n");
 	printf("--------------------------------------------------\n");
 	printf("\tPROJECT DETAILED INFORMATION\n");
 	printf("--------------------------------------------------\n");
-	printf("TOTAL MONTHS  [%d]\nTOTAL PROJECT COST [%.2lf]\n", *months,
+	printf("TOTAL MONTHS  [%d]\nTOTAL PROJECT COST [%.2f]\n", *months,
 			*tProjectCost);
-	printf("MONTHLY PROJECT COST [%.2lf]\nTOTAL NUMBER OF PROFESSIONALS [%d]\n",
+	printf("MONTHLY PROJECT COST [%.2f]\nTOTAL NUMBER OF PROFESSIONALS [%d]\n",
 			*projectCost, *devNum);
 	while (temp != NULL)
 	{
@@ -63,12 +63,12 @@ void display_project_details(proj **project, double *projectCost, int *devNum,
 		printf("==================================================\n");
 		for (i = 0; i < SALARYLEVELS; i++)
 		{
-			printf("%s %s = %.2lf\n",
+			printf("%s %s = %.2f\n",
 					temp->info.salaryLevels[i].level,
 					temp->info.name,
 					temp->info.salaryLevels[i].salary);
 		}
-		printf("\nUNIT COST IN PROJECT = %.2lf\n", temp->nodeCost);
+		printf("\nUNIT COST IN PROJECT = %.2f\n", temp->nodeCost);
 		printf("PROFECIENCY LEVEL DISTRIBUTION\n");
 		printf("------------------------------------------\n");
 		printf("JUNIOR = %d\nMID-LEVEL = %d\nSENIOR = %d\n",

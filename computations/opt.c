@@ -40,8 +40,6 @@ void init_optimization_info(opt *info)
 void display_opt_info(opt *optInfo, int *index)
 {
 	clearScreen();
-	int choice, tracker;
-
 	printf("==========================================================\n");
 	printf("LEVEL: %s\n", optInfo->levelName[*index]);
 	printf("----------------------------------------------------------\n");

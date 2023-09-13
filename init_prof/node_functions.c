@@ -65,7 +65,6 @@ profession *create_field(node **db)
 void list_init(node **head, profession *newData)
 {
 	node *newNode = NULL;
-	int i;
 
 	newNode = malloc(sizeof(node));
 	if (!newNode)
@@ -132,7 +131,7 @@ int proj_count(proj **head)
 void display_db(node **db)
 {
 	node *temp = *db;
-	int i = OFFONE, j;
+	int i = OFFONE;
 
 	if (temp == NULL)
 		printf("The database is empty!!\n");

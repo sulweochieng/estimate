@@ -10,16 +10,15 @@
  */
 void project_cost_calc(proj **projectName, double *projectCost, int *profNum)
 {
-	clearScreen();
 	void (*ratio_func[COSTOPTIONS])(int, ratio *) = {optimum_a, optimum_b,
 		optimum_c, equilibrium, equilibrium_a, equilibrium_b,
 		equilibrium_c};
 	opt optInfo;
 	ratio ratioS;
-	int j, devNum, levIndex;
+	int devNum, levIndex;
 	proj *current = *projectName;
-	double nodeCost = 0.0;
 
+	clearScreen();
 	while (current != NULL)
 	{
 		if (current->computed == FALSE)
@@ -33,7 +32,7 @@ void project_cost_calc(proj **projectName, double *projectCost, int *profNum)
 			if (levIndex > OPTIMUM)
 			{
 				equillibrium_compute(&ratioS, &devNum,
-						projectName, &levIndex);
+						&levIndex);
 				current->nodeRatio = ratioS;
 				current->nodeCost =
 					node_cost_update(projectName, &ratioS);

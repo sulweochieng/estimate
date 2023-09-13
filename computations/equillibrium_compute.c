@@ -12,8 +12,7 @@
  * @projectName: project parsed for computation.
  * @levelIndex: the optimal level index required for the project.
  */
-void equillibrium_compute(ratio *ratioS, int *devNum, proj **projectName,
-		int *levelIndex)
+void equillibrium_compute(ratio *ratioS, int *devNum, int *levelIndex)
 {
 	void (*ratio_func[COSTOPTIONS])(int, ratio *) = {optimum_a, optimum_b,
 		optimum_c, equilibrium, equilibrium_a, equilibrium_b,

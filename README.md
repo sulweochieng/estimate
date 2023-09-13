@@ -72,6 +72,8 @@ earlier stated.
 * Computing project cost; both monthly and within the specified timframe.
 * Computing the total number of professionals needed for the project.
 * Adjusting timeframes and professionals involved in the project.
+* Compute cost per profession involved in the project.
+	- With this you can see where most of the money goes to in your project.
 
 ## Getting Started
 
@@ -99,9 +101,9 @@ These instructions will help you get a copy of the project up and running on you
 									     -o
 									     estimate
 
-#### 4. Run the shell:
+#### 4. Run estimate:
 
-	[gdb]./estimate
+	./estimate
 
 ### Usage
 

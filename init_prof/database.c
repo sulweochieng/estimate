@@ -10,10 +10,10 @@
  */
 void create_database(node **head)
 {
-	clearScreen();
 	profession *newProf = NULL;
 	int choice;
 
+	clearScreen();
 	do {
 		newProf = create_field(head);
 		list_init(head, newProf);
@@ -31,10 +31,10 @@ void create_database(node **head)
  */
 void rm_from_db(node **db)
 {
-	clearScreen();
-	int tracker, entryNums, choice, entry;
+	int tracker, choice, entry;
 	node *current = *db, *temp = NULL;
 
+	clearScreen();
 	if (*db == NULL)
 	{
 		printf("\nDATABASE IS EMPTY!\n");

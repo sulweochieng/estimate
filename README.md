@@ -151,12 +151,7 @@ Run the below script if the initial one throws at you error:
 
 Run this:
 
-gcc -Wall -Werror -Wextra -pedantic -std=gnu89 main.c \
-    computations/compute.c computations/equillibrium_compute.c computations/node_cost.c computations/opt.c \
-    init_prof/database.c init_prof/init_project.c init_prof/node_functions.c init_prof/user_input.c \
-    memory/free_mem.c \
-    ratios/equilibrium.c ratios/optimum.c ratios/utils.c \
-    -o estimate
+	gcc -Wall -Werror -Wextra -pedantic -std=gnu89 main.c \computations/compute.c computations/equillibrium_compute.c computations/node_cost.c computations/opt.c \init_prof/database.c init_prof/init_project.c init_prof/node_functions.c init_prof/user_input.c \memory/free_mem.c \ratios/equilibrium.c ratios/optimum.c ratios/utils.c \ -o estimate
 
 
 #### 4. Run estimate:

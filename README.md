@@ -4,8 +4,8 @@ This is a simple estimation tool designed to help one compute a project cost
 within a specified timeframe.
 
 To enjoy most of ESTIMATE and see it's capabilities, I implore you to use it for
-huge projects which involves lots of professionals. Though it works as weell as
-it was designed, for small projects.
+huge projects which involves lots of professionals. Though it works as well too
+with small projects.
 
 ## Description
 When using ESTIMATE, we assume that you know the following before:
@@ -64,7 +64,7 @@ Betty Coding Style.
 
 Check compliance by running:
 
-	betty main.c computations/*.c init_prof/*.c ratios/*.c 
+	betty main.c computations/*.c init_prof/*.c ratios/*.c memory/*.c
 
 If you don't have Betty installed in your PC, install it by:
 
@@ -82,6 +82,34 @@ If you don't have Betty installed in your PC, install it by:
 
 After installation you can go back to project repository and run the command as
 earlier stated.
+
+## Memory
+To check for any faul allocation (out of your curiousity) you can run valgrind
+(if you have it installed) as follows:
+
+	valgrind ./estimate
+
+If you don't have valgrind in your machine, please follow the following steps to
+install it.
+#### For Ubuntu/Debian
+##### 1. Open a terminal.
+##### 2. Update the package list to make sure you have the latest information about available packages:
+
+	sudo apt update
+##### 3. Install Valgrind using the package manager:
+	sudo apt install valgrind
+##### 4. Verify the installation by checking the Valgrind version:
+	valgrind --version
+#### For CentOS/RHEL:
+##### 1. Open a terminal.
+##### 2. nstall the EPEL repository (Extra Packages for Enterprise Linux) if it's not already installed. Valgrind is available in EPEL.
+	sudo yum install epel-release
+##### 3. Install Valgrind using the package manager:
+	sudo yum install valgrind
+##### 4. Verify the installation by checking the Valgrind version:
+	valgrind --version
+
+Valgrind should now be installed on your system.
 
 ## Features
 
@@ -113,11 +141,7 @@ These instructions will help you get a copy of the project up and running on you
 
 #### 3. Compile the source code:
 
-	gcc -Wall -Werror -Wextra -pedantic -std=gnu89 main.c computations/*.c
-									     init_prof/*.c
-									     ratios/*.c
-									     -o
-									     estimate
+	gcc -Wall -Werror -Wextra -pedantic -std=gnu89 main.c computations/*.c init_prof/*.c memory/*.c ratios/*.c - o estimate
 
 #### 4. Run estimate:
 
@@ -125,7 +149,11 @@ These instructions will help you get a copy of the project up and running on you
 
 ### Usage
 
-Use to compute project estimates.
+Use to compute project estimated cost, to help an organisation  know before-hand
+how much it will cost them to complete a project at hand.
+
+It will allow the user to put in timelines for the project, something they can
+adjust as the project goes along, to help in costa and/or time management.
 
 #### Example usage
 

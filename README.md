@@ -143,6 +143,22 @@ These instructions will help you get a copy of the project up and running on you
 
 	gcc -Wall -Werror -Wextra -pedantic -std=gnu89 main.c computations/*.c init_prof/*.c memory/*.c ratios/*.c - o estimate
 
+##### 3(a) Alternative compilation
+
+Run the below script if the initial one throws at you error:
+
+	gcc: error: -E or -x required when input is from standard input
+
+Run this:
+
+gcc -Wall -Werror -Wextra -pedantic -std=gnu89 main.c \
+    computations/compute.c computations/equillibrium_compute.c computations/node_cost.c computations/opt.c \
+    init_prof/database.c init_prof/init_project.c init_prof/node_functions.c init_prof/user_input.c \
+    memory/free_mem.c \
+    ratios/equilibrium.c ratios/optimum.c ratios/utils.c \
+    -o estimate
+
+
 #### 4. Run estimate:
 
 	./estimate
@@ -182,6 +198,8 @@ database with the following subfields:
 * Game Developer
 * Security Specialist
 
+NOTICE that the last letter 's' is ommitted from each entry, intentionally. When
+creating a database, copy paste as it is.
 ## Acknowledgements
 
 * This project is solely done by https://github.com/ochiengsulwe

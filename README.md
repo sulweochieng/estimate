@@ -58,6 +58,9 @@ levels.
 C Language is wholly used within the project to demonstrate the power and
 ability of PROCEDURAL programming, a programming paradigmn I hold so dearly at
 heart.
+## Text editor
+
+I love vim. All you see is work of vim.
 
 ## Coding Style
 Betty Coding Style.

@@ -196,7 +196,7 @@ database with the following subfields:
 * Game Developer
 * Security Specialist
 
-NOTICE that the last letter 's' is ommitted from each entry, intentionally. When
+NOTICE that the last letter 's' is ommitted  at the very end of each entry, intentionally. When
 creating a database, copy paste as it is.
 ## Acknowledgements
 

@@ -34,6 +34,14 @@ void user_input_string(node **db, char **buffer)
 	while (1)
 	{
 		printf("ENTER A VALID FIELD TO ADD TO THE DATABASE: ");
+		c = getchar();
+		if (!isalpha(c))
+		{
+			clear_input_buffer();
+			continue;
+		}
+		(*buffer)[i] = c;
+		++i;
 		while ((c = getchar()) != EOF && c != '\n')
 		{
 			(*buffer)[i] = c;

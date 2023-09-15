@@ -32,7 +32,6 @@ void create_database(node **head)
 		printf("--------------------------------------------------\n");
 		printf("[1].ADD TO DATABASE\n[2].BACK TO MAIN MENU\n");
 		printf("--------------------------------------------------\n");
-		printf("ENTER A CORRESONDING INDEX: ");
 		choice_check(&choice, 2);
 	} while (choice != 2);
 }

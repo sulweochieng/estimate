@@ -68,7 +68,7 @@ int opt_info_set(proj **projNode, opt *optInfo)
 	for (j = 0; j < OPTLEVELS; j++)
 		printf("[%d]. %s\n", j + 1, optInfo->levelName[j]);
 	printf("----------------------------------------------------------\n");
-	printf("PLEASE CHOOSE A LEVEL BY ENTERING A CORRESPONDING INDEX: ");
+	/*printf("PLEASE CHOOSE A LEVEL BY ENTERING A CORRESPONDING INDEX: ");*/
 	choice_check(&levIndex, 4);
 	(*projNode)->optLevel = strdup(optInfo->levelName[levIndex - OFFONE]);
 	printf("----------------------------------------------------------\n");

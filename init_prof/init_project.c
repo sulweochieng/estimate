@@ -41,7 +41,7 @@ void create_project(node **database, proj **project, double *projectCost, int
 			nod_assign(project, &selectedNode, &projectNode,
 					projectCost, devNum, &tracker);
 		}
-		printf("[1].ADD TO PROJECT\n[2].BACK TO MENU\nENTER INDEX:");
+		printf("[1].ADD TO PROJECT\n[2].BACK TO MENU\n");
 		choice_check(&choice, 2);
 	} while (choice != 2);
 }
@@ -90,6 +90,7 @@ void display_project(proj **project)
 	if (temp == NULL)
 	{
 		printf("PROJECT LIST IS STILL EMPTY\n");
+		return;
 	}
 	else
 	{
@@ -132,8 +133,8 @@ void rm_from_project(proj **project, double *projectCost, int *devNum, int
 		*projectCost = project_cost_reduce(&current, projectCost);
 		*devNum -= current->num;
 		*project = current->pointerNext;
+		free(current->optLevel);
 		free(current);
-		printf("Profession removed successfully\n");
 	}
 	else
 	{
@@ -148,8 +149,8 @@ void rm_from_project(proj **project, double *projectCost, int *devNum, int
 		*projectCost = project_cost_reduce(&current, projectCost);
 		*devNum -= current->num;
 		prev->pointerNext = current->pointerNext;
+		free(current->optLevel);
 		free(current);
-		printf("Profession removed successfully\n");
 	}
 	printf("REMOVE ANOTHER?\n1: YES\n2: BACK\nOPTION: ");
 	choice_check(&choice, 2);

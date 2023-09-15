@@ -59,6 +59,7 @@ void rm_from_db(node **db)
 	if (choice == OFFONE)
 	{
 		*db = current->pointerNext;
+		free(current->data.name);
 		free(current);
 		printf("ITEM DELETED SUCCESSFULY\n");
 	}
@@ -72,6 +73,7 @@ void rm_from_db(node **db)
 			tracker++;
 		}
 		temp->pointerNext = current->pointerNext;
+		free(current->data.name);
 		free(current);
 		printf("ITEM DELETED SUCCESSFULLY\n");
 	}
@@ -82,7 +84,7 @@ void rm_from_db(node **db)
 }
 
 /**
- * delete_item_select - selects from the project databae an item index to
+ * delete_item_select - selects from the project database an item index to
  * delete.
  * @project: the project database we are deleting from.
  * @index: index at which we are deleting the profession from.

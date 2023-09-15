@@ -9,7 +9,7 @@
  *	field under the type Profession. This new field is used within the
  *	system for various computational works; ranging from total project cost
  *	computed from the salary leves of every field used within a project.
- * Return: returns a pointer to the location of the newly created field.
+ * @newfield: the newfield to create unto the main database.
  */
 void create_field(node **db, profession **newfield)
 {

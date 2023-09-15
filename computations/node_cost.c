@@ -12,7 +12,7 @@ double node_cost_update(proj **projectNode, ratio *ratioS)
 {
 	double nodeCost = 0.0;
 
-	if ((*projectNode)->computed == FALSE && (*projectNode)->nodeCost == 0.0)
+	if ((*projectNode)->computed == FALSE)
 		unit_sum(projectNode, ratioS, &nodeCost);
 	return (nodeCost);
 }

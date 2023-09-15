@@ -11,45 +11,34 @@
  *	computed from the salary leves of every field used within a project.
  * Return: returns a pointer to the location of the newly created field.
  */
-profession *create_field(node **db)
+void create_field(node **db, profession **newfield)
 {
 	int i;
 	double levelSalary;
-	profession *newfield = NULL;
 	char *levels[SALARYLEVELS] = {"JUNIOR", "MID-LEVEL", "SENIOR"};
 
-	newfield = malloc(sizeof(profession));
-	if (!newfield)
-		return (NULL);
-	newfield->name = malloc(sizeof(char) * DEVSIZE);
-	if (!newfield->name)
-	{
-		free(newfield);
-		return (NULL);
-	}
 	clear_input_buffer();
-	user_input_string(db, &newfield->name);
+	user_input_string(db, &((*newfield)->name));
 	for (i = FIRSTITEM; i < SALARYLEVELS; i++)
 	{
-		newfield->salaryLevels[i].level = (levels[i]);
+		(*newfield)->salaryLevels[i].level = (levels[i]);
 		printf("ENTER SALARY FOR %s %s: ",
-				newfield->salaryLevels[i].level,
-				newfield->name);
+				(*newfield)->salaryLevels[i].level,
+				(*newfield)->name);
 		scanf("%lf", &levelSalary);
-		if (i > 0 && levelSalary <= newfield->salaryLevels[i -
+		if (i > 0 && levelSalary <= (*newfield)->salaryLevels[i -
 				OFFONE].salary)
 		{
 			printf("PLEASE INPUT VALUE GREATER THAN %s %s's salary\n",
-					newfield->salaryLevels[i - OFFONE].level,
-					newfield->name);
+					(*newfield)->salaryLevels[i - OFFONE].level,
+					(*newfield)->name);
 			--i;
 		}
 		else
 		{
-			newfield->salaryLevels[i].salary = levelSalary;
+			(*newfield)->salaryLevels[i].salary = levelSalary;
 		}
 	}
-	return (newfield);
 }
 
 /**
@@ -62,7 +51,7 @@ profession *create_field(node **db)
  *	at an index, or
  *	at the end of the list.
  */
-void list_init(node **head, profession *newData)
+void list_init(node **head, profession **newData)
 {
 	node *newNode = NULL;
 
@@ -72,7 +61,8 @@ void list_init(node **head, profession *newData)
 		printf("Failed to allocate memory!\n");
 		exit(EXIT_FAILURE);
 	}
-	newNode->data = *newData;
+	newNode->data = **newData;
+	free(*newData);
 	newNode->pointerNext = *head;
 	*head = newNode;
 }

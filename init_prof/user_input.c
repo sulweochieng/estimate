@@ -31,12 +31,6 @@ void user_input_string(node **db, char **buffer)
 {
 	int c, i = 0, initialBufferSize = BUFSIZE;
 
-	*buffer = malloc(sizeof(char) * initialBufferSize);
-	if (!(*buffer))
-	{
-		printf("Failed to allocate memory!\n");
-		exit(EXIT_FAILURE);
-	}
 	while (1)
 	{
 		printf("ENTER A VALID FIELD TO ADD TO THE DATABASE: ");

@@ -15,13 +15,25 @@ void create_database(node **head)
 
 	clearScreen();
 	do {
-		newProf = create_field(head);
-		list_init(head, newProf);
+		newProf = malloc(sizeof(profession));
+		if (!newProf)
+		{
+			printf("Memory allocation failure\n");
+			exit(EXIT_FAILURE);
+		}
+		newProf->name = malloc(sizeof(char) * DEVSIZE);
+		if (!(newProf->name))
+		{
+			printf("Memory Allocation failure\n");
+			exit(EXIT_FAILURE);
+		}
+		create_field(head, &newProf);
+		list_init(head, &newProf);
 		printf("--------------------------------------------------\n");
 		printf("[1].ADD TO DATABASE\n[2].BACK TO MAIN MENU\n");
 		printf("--------------------------------------------------\n");
 		printf("ENTER A CORRESONDING INDEX: ");
-		scanf("%d", &choice);
+		choice_check(&choice, 2);
 	} while (choice != 2);
 }
 
@@ -31,7 +43,7 @@ void create_database(node **head)
  */
 void rm_from_db(node **db)
 {
-	int tracker, choice, entry;
+	int tracker, choice, entry, dbSize;
 	node *current = *db, *temp = NULL;
 
 	clearScreen();
@@ -43,7 +55,8 @@ void rm_from_db(node **db)
 	}
 	display_db(db);
 	printf("ENTER ITEM INDEX TO DELETE: ");
-	scanf("%d", &choice);
+	dbSize = node_count(db);
+	choice_check(&choice, dbSize);
 	if (choice == OFFONE)
 	{
 		*db = current->pointerNext;
@@ -64,7 +77,23 @@ void rm_from_db(node **db)
 		printf("ITEM DELETED SUCCESSFULLY\n");
 	}
 	printf("[1].DELETE ANOTHER\n[2]. BACK TO MAIN MENU\nINDEX: ");
-	scanf("%d", &entry);
+	choice_check(&entry, 2);
 	if (entry == OFFONE)
 		rm_from_db(db);
+}
+
+/**
+ * delete_item_select - selects from the project databae an item index to
+ * delete.
+ * @project: the project database we are deleting from.
+ * @index: index at which we are deleting the profession from.
+ */
+void delete_item_select(proj **project, int *index)
+{
+	int projSize;
+
+	display_project(project);
+	printf("ENTER CORRESPONDING INDEX TO DELETE: ");
+	projSize = proj_count(project);
+	choice_check(index, projSize);
 }

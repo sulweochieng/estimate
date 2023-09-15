@@ -16,7 +16,7 @@ void create_project(node **database, proj **project, double *projectCost, int
 {
 	node *selectedNode = *database;
 	proj *projectNode = NULL;
-	int index, choice, tracker = 0;
+	int index, choice, tracker = 0, dbSize;
 
 	clearScreen();
 	if (!(*database))
@@ -27,7 +27,8 @@ void create_project(node **database, proj **project, double *projectCost, int
 	do {
 		display_db(database);
 		printf("ENTER A CORRESPONDING INDEX TO ADD TO PROJECT: ");
-		scanf("%d", &index);
+		dbSize = node_count(database);
+		choice_check(&index, dbSize);
 		while (selectedNode != NULL)
 		{
 			tracker++;
@@ -41,7 +42,7 @@ void create_project(node **database, proj **project, double *projectCost, int
 					projectCost, devNum, &tracker);
 		}
 		printf("[1].ADD TO PROJECT\n[2].BACK TO MENU\nENTER INDEX:");
-		scanf("%d", &choice);
+		choice_check(&choice, 2);
 	} while (choice != 2);
 }
 
@@ -125,9 +126,7 @@ void rm_from_project(proj **project, double *projectCost, int *devNum, int
 		printf("Nothing to DELETE!! Project database is EMPTY!!\n");
 		return;
 	}
-	display_project(project);
-	printf("ENTER CORRESPONDING INDEX TO DELETE: ");
-	scanf("%d", &index);
+	delete_item_select(project, &index);
 	if (index == OFFONE)
 	{
 		*projectCost = project_cost_reduce(&current, projectCost);
@@ -153,7 +152,7 @@ void rm_from_project(proj **project, double *projectCost, int *devNum, int
 		printf("Profession removed successfully\n");
 	}
 	printf("REMOVE ANOTHER?\n1: YES\n2: BACK\nOPTION: ");
-	scanf("%d", &choice);
+	choice_check(&choice, 2);
 	if (choice == OFFONE)
 		rm_from_project(project, projectCost, devNum, months,
 				tProjectCost);

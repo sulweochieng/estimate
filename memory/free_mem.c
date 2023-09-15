@@ -14,6 +14,7 @@ void free_list(node *head)
 	{
 		temp = head;
 		head = head->pointerNext;
+		free(temp->data.name);
 		free(temp);
 	}
 }

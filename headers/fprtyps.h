@@ -10,6 +10,7 @@ void create_database(node **head);
 void create_project(node **database, proj **project, double *projectCost, int
 		*devNum);
 int db_entry_check(node **db, char *entry);
+void delete_item_select(proj **project, int *index);
 void display_opt_info(opt *optInfo, int *index);
 void display_project(proj **project);
 void display_project_details(proj **project, double *projectCost, int *devNum,
@@ -23,11 +24,14 @@ void equillibrium_compute(ratio *ratioS, int *devNum, int *levelIndex);
 void free_list(node *head);
 void free_proj(proj *head);
 void generate_ratio_list(int n, ratio *ratiosList, unsigned long int *count);
+void init_func(node **database, proj **project, double *projectCost, int
+		*devNum, double *tProjectCost, int *months, int *action, char
+		*menu[], int menuSize);
 void init_levels(devLevels *levels);
 void init_optimization_info(opt *info);
 bool is_node_in_project(proj *project, node *selectedNode);
 void lf_check(double *input);
-void list_init(node **head, profession *newData);
+void list_init(node **head, profession **newData);
 void nod_assign(proj **project, node **selectedNode, proj **projectNode, double
 		*projectCost, int *devNum, int *tracker);
 int node_count(node **head);
@@ -51,6 +55,6 @@ int string_input_check( char *buffer);
 void to_upper(char *buffer);
 void unit_sum(proj **nod, ratio *rat, double *nCost);
 void user_input_string(node **db, char **buffer);
-profession *create_field(node **db);
+void create_field(node **db, profession **newfield);
 profession **prof_list(void);
 #endif

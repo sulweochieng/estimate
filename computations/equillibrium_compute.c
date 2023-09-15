@@ -9,7 +9,6 @@
  * @ratioS: determines the ratios values to be used for the computational
  * purposes.
  * @devNum: the number of developers to be involved in the project.
- * @projectName: project parsed for computation.
  * @levelIndex: the optimal level index required for the project.
  */
 void equillibrium_compute(ratio *ratioS, int *devNum, int *levelIndex)
@@ -24,7 +23,7 @@ void equillibrium_compute(ratio *ratioS, int *devNum, int *levelIndex)
 	{
 		print_levels(&level);
 		printf("ENTER INDEX: ");
-		scanf("%d", &eqChoice);
+		choice_check(&eqChoice, SALARYLEVELS);
 		ratio_func[SALARYLEVELS + eqChoice](*devNum, ratioS);
 	}
 	else

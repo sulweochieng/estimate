@@ -39,15 +39,16 @@ void create_project(node **database, proj **project, double *projectCost, int
 		if (selectedNode != NULL)
 		{
 			nod_assign(project, &selectedNode, &projectNode,
-					projectCost, devNum, &tracker);
+					projectCost, devNum);
 		}
 		printf("[1].ADD TO PROJECT\n[2].BACK TO MENU\n");
 		choice_check(&choice, 2);
+		tracker = 0;
 	} while (choice != 2);
 }
 
 /**
- * nod_assign - updates the inticacies of the project node.
+ * nod_assign - updates the details of the project node.
  * @project: the project to add the new node to.
  * @selectedNode: node from the main database.
  * @projectNode: the node to update.
@@ -57,7 +58,7 @@ void create_project(node **database, proj **project, double *projectCost, int
  * @tracker: is set back to 0 on every addition to avoid double entry.
  */
 void nod_assign(proj **project, node **selectedNode, proj **projectNode, double
-		*projectCost, int *devNum, int *tracker)
+		*projectCost, int *devNum)
 {
 	if (!(is_node_in_project(*project, *selectedNode)))
 	{
@@ -69,7 +70,7 @@ void nod_assign(proj **project, node **selectedNode, proj **projectNode, double
 		(*projectNode)->pointerNext = *project;
 		*project = *projectNode;
 		project_cost_calc(project, projectCost, devNum);
-		*tracker = 0;
+		/* *tracker = 0;*/
 		printf("%s SUCCESSFULLY ADDED\n", (*project)->info.name);
 	}
 	else

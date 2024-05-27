@@ -171,8 +171,8 @@ adjust as the project goes along, to help in costa and/or time management.
 
 #### Example usage
 
-* `CREATE/UPDATE DATABASE - allows you to create a database.
-* `CREATE/UPDATE PROJECT - allows you to create a project.
+* `CREATE/UPDATE DATABASE` - allows you to create a database.
+* `CREATE/UPDATE PROJECT` - allows you to create a project.
 
 For more information on features, please refer to the source code and comments.
 
@@ -200,4 +200,4 @@ NOTICE that the last letter 's' is ommitted  at the very end of each entry, inte
 creating a database, copy paste as it is.
 ## Acknowledgements
 
-* This project is solely done by https://github.com/ochiengsulwe
+* This project is solely done by https://github.com/ochiengsulwe and https://github.com/sulweochieng

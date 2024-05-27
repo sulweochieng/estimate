@@ -33,7 +33,7 @@ bool is_node_in_project(proj *project, node *selectedNode);
 void lf_check(double *input);
 void list_init(node **head, profession **newData);
 void nod_assign(proj **project, node **selectedNode, proj **projectNode, double
-		*projectCost, int *devNum, int *tracker);
+		*projectCost, int *devNum);
 int node_count(node **head);
 double node_cost_update(proj **projectNode, ratio *ratioS);
 void optimum_a(int n, ratio *choice);
